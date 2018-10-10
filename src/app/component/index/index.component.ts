@@ -41,7 +41,6 @@ export class IndexComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getParameter();
     this.tableConfig = {
       columnConfig: [
         {title: '设备IP', key: 'serverIp', width: '200px'},
@@ -62,29 +61,22 @@ export class IndexComponent implements OnInit, OnDestroy {
       showPagination: false,
       bordered: true
     };
-    this.getAlarmList(1, 10, {});
-    this.getAlarmListLoop();
-    this.getMonitor();
-    this._timer = setInterval(e => {
-      this.getMonitor();
-    }, 5000);
-    this.$socket.connect();
-    // 告警接收
-    this.$socket.openTopic('/wlsTopic/alarm', response => {
-      const _temp = JSON.parse(response.body) || [];
-      this.alarmInfo.forEach(item => {
-        const target = _temp.find(_el => _el.alarmLevel === item.alarmLevel);
-        if (target) {
-          item.alarmCount = target.alarmCount;
-        } else {
-        }
-      });
-    });
-    // 邮件接收
-    this.$socket.openTopic('/wlsTopic/email', response => {
-      const _temp = JSON.parse(response.body);
-      this.alarmInfo[this.alarmInfo.length - 1].alarmCount = _temp;
-    });
+    // this.$socket.connect();
+    // this.$socket.openTopic('/wlsTopic/alarm', response => {
+    //   const _temp = JSON.parse(response.body) || [];
+    //   this.alarmInfo.forEach(item => {
+    //     const target = _temp.find(_el => _el.alarmLevel === item.alarmLevel);
+    //     if (target) {
+    //       item.alarmCount = target.alarmCount;
+    //     } else {
+    //     }
+    //   });
+    // });
+    // // 邮件接收
+    // this.$socket.openTopic('/wlsTopic/email', response => {
+    //   const _temp = JSON.parse(response.body);
+    //   this.alarmInfo[this.alarmInfo.length - 1].alarmCount = _temp;
+    // });
   }
 
   goToGISMap() {

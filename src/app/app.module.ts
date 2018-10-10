@@ -13,18 +13,14 @@ import {RouterModule} from '@angular/router';
 import {ROUTER_CONFIG} from './app.routes';
 import {CoreModule} from './core/core.module';
 import {SharedModule} from './shared/shared.module';
-import {AlarmBadgeComponent} from './component/alarm-badge/alarm-badge.component';
 import {NoopInterceptor} from './noop-interceptor';
 import {NgxEchartsModule} from 'ngx-echarts';
-import { GISMapComponent } from './component/gis-map/gis-map.component';
 registerLocaleData(zh);
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
-    AlarmBadgeComponent,
-    GISMapComponent
   ],
   imports: [
     BrowserModule,
