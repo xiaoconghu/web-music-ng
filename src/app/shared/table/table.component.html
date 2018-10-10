@@ -1,0 +1,26 @@
+<nz-table #nzTable [nzData]="dataSet"
+          [nzTotal]="pageBean.Total"
+          [(nzPageIndex)]="pageBean.pageIndex"
+          [(nzPageSize)]="pageBean.pageSize"
+          [nzFrontPagination]="false"
+          (nzPageIndexChange)="refreshStatus($event)"
+          (nzPageSizeChange)="refreshStatus($event)"
+          [nzPageSizeOptions]="[ 10, 20, 30, 40, 50 ]"
+          #rowSelectionTable
+          [nzBordered]="tableConfig.bordered"
+          [nzShowPagination]="tableConfig.showPagination"
+          #borderedTable
+          #middleTable>
+  <thead>
+  <tr>
+    <th *ngFor="let config of tableConfig.columnConfig" nzWidth="{{config.width}}">
+      {{config.title}}
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of nzTable.data">
+    <td *ngFor="let config of tableConfig.columnConfig" > {{data[config.key]}}</td>
+  </tr>
+  </tbody>
+</nz-table>

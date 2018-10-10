@@ -1,0 +1,7 @@
+/* You can add global styles to this file, and also import other style files */
+.ant-table-tbody>tr>td, .ant-table-thead>tr>th{
+  padding: 6px;
+}
+.ant-table-pagination.ant-pagination{
+  margin: 7px 0;
+}
