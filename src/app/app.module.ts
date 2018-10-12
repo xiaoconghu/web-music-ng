@@ -8,7 +8,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule, HttpInterceptor} from '@angular/com
 import {NgZorroAntdModule, NZ_I18N, zh_CN} from 'ng-zorro-antd';
 import {HashLocationStrategy, LocationStrategy, registerLocaleData} from '@angular/common';
 import zh from '@angular/common/locales/zh';
-import {IndexComponent} from './component/index/index.component';
 import {RouterModule} from '@angular/router';
 import {ROUTER_CONFIG} from './app.routes';
 import {CoreModule} from './core/core.module';
@@ -20,7 +19,6 @@ registerLocaleData(zh);
 @NgModule({
   declarations: [
     AppComponent,
-    IndexComponent,
   ],
   imports: [
     BrowserModule,

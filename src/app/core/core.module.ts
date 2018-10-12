@@ -3,8 +3,8 @@
  */
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {AlarmService} from './api-service/alarm-service';
 import {SocketIO, WebSocketFactory} from './utils/websocket.service';
+import {UserService} from './api-service/user.service';
 
 @NgModule({
   imports: [
@@ -12,7 +12,7 @@ import {SocketIO, WebSocketFactory} from './utils/websocket.service';
   ],
   declarations: [],
   providers: [
-    {provide: AlarmService, useClass: AlarmService},
+    {provide: UserService, useClass: UserService},
     {
       provide: SocketIO, useFactory: () => {
         return WebSocketFactory.forRoot();

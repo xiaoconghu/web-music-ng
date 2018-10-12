@@ -1,4 +1,6 @@
-<nz-table #nzTable [nzData]="dataSet"
+
+<nz-table #nzTable
+          [nzData]="dataSet"
           [nzTotal]="pageBean.Total"
           [(nzPageIndex)]="pageBean.pageIndex"
           [(nzPageSize)]="pageBean.pageSize"
@@ -13,6 +15,7 @@
           #middleTable>
   <thead>
   <tr>
+    <th nzShowCheckbox nzShowRowSelection [nzSelections]="listOfSelection" [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
     <th *ngFor="let config of tableConfig.columnConfig" nzWidth="{{config.width}}">
       {{config.title}}
     </th>
@@ -20,6 +23,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let data of nzTable.data">
+    <td nzShowCheckbox [(nzChecked)]="data.checked" (nzCheckedChange)="refreshCheckStatus()"></td>
     <td *ngFor="let config of tableConfig.columnConfig" > {{data[config.key]}}</td>
   </tr>
   </tbody>

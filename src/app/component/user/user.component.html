@@ -1,0 +1,35 @@
+<nz-layout class="layout">
+
+  <nz-layout>
+    <nz-sider [nzWidth]="200" style="background:#263238;">
+      <ul nz-menu [nzMode]="'inline'" style="background:#263238;width:201px;color: #939fa7;">
+        <li nz-menu-item nz-tooltip nzPlacement="right">
+            <span title>
+            <i class="anticon anticon-mail"></i>
+            <span>音乐列表</span>
+            </span>
+        </li>
+        <li nz-menu-item (click)="navigate('user')">
+            <span title>
+              <i class="anticon anticon-appstore"></i>
+              <span>用户列表</span>
+            </span>
+        </li>
+        <li nz-menu-item>
+            <span title>
+              <i class="anticon anticon-setting"></i>
+              <span>播放策略配置</span>
+            </span>
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-layout style="padding:0 24px;box-sizing: border-box;background: #f6fafb">
+      <nz-content style="background:#f6fafb; box-sizing: border-box;
+  height:calc(100vh - 133px);padding: 24px 24px 0 24px;overflow: auto ">
+        <router-outlet></router-outlet>
+      </nz-content>
+      <nz-footer style="text-align: center;background: #f6fafb">Ant Design ©2017 Implement By Angular</nz-footer>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>
+

@@ -6,5 +6,6 @@ import {IndexComponent} from './component/index/index.component';
 
 export const ROUTER_CONFIG: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/index'},
-  {path: 'index', component: IndexComponent},
+  {path: 'index', loadChildren: './component/index/index.module#IndexModule'},
+  {path: 'user', loadChildren: './component/user/user.module#UserModule'},
 ];
