@@ -10,7 +10,7 @@ export const ROUTER_CONFIG: Routes = [
   {
     path: '', component: UserComponent,
     children: [
-      {path: 'add-user', component: AddUserComponent},
+      {path: 'user-detail/:type', component: AddUserComponent},
       {path: 'user-list', component: UserListComponent},
     ]
   },

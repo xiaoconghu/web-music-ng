@@ -3,6 +3,7 @@
  */
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Result} from '../entity/result';
 
 @Injectable()
 export class UserService {
@@ -34,11 +35,21 @@ export class UserService {
     return this.getData('get', `/music/user/deleteUserById/${id}`);
   }
 
+  public deleteUserByBatch(ids) {
+    return this.getData('post', `/music/user/deleteUserByBatch`, ids);
+  }
+
+  getUserById(id: any) {
+    return this.getData('get', `music/user/getUserById/${id}`);
+  }
+
   private getData(method, url, body = {}) {
     return new Promise((resolve, reject) => {
-      this.$http[method](url, body).subscribe(result => {
+      this.$http[method](url, body).subscribe((result: Result) => {
         result.code === 0 ? resolve(result) : reject(result);
       });
     });
   }
+
+
 }

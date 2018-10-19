@@ -11,4 +11,11 @@ export class TableConfig {
   public bordered: boolean;
   public showPagination: boolean;
   public columnConfig: ColumnConfig[];
+  public operation?: Operation[];
+  public topButtons?: Operation[];
+}
+
+export class Operation {
+  public text: string;
+  public handle: any;
 }

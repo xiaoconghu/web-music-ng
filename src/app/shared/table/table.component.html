@@ -1,4 +1,9 @@
-
+<div style="padding: 26px 16px 16px;">
+  <button nz-button nzType="primary" *ngFor="let item of tableConfig.topButtons let index = index" nzGhost
+          style="margin-right: 10px"
+          (click)="topHandle(item,index)">{{item.text}}
+  </button>
+</div>
 <nz-table #nzTable
           [nzData]="dataSet"
           [nzTotal]="pageBean.Total"
@@ -15,7 +20,8 @@
           #middleTable>
   <thead>
   <tr>
-    <th nzShowCheckbox nzShowRowSelection [nzSelections]="listOfSelection" [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+    <th nzShowCheckbox nzShowRowSelection [nzSelections]="listOfSelection" [(nzChecked)]="allChecked"
+        [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
     <th *ngFor="let config of tableConfig.columnConfig" nzWidth="{{config.width}}">
       {{config.title}}
     </th>
@@ -24,7 +30,16 @@
   <tbody>
   <tr *ngFor="let data of nzTable.data">
     <td nzShowCheckbox [(nzChecked)]="data.checked" (nzCheckedChange)="refreshCheckStatus()"></td>
-    <td *ngFor="let config of tableConfig.columnConfig" > {{data[config.key]}}</td>
+
+    <td *ngFor="let config of tableConfig.columnConfig">
+      <ng-container *ngIf="config.key">
+        {{data[config.key]}}
+      </ng-container>
+      <ng-container *ngIf="!config.key">
+        <span *ngFor="let item of tableConfig.operation let index = index" style="color: #1890ff; cursor: pointer"
+              (click)="handle(item,index,data)"> {{item.text}}</span>
+      </ng-container>
+    </td>
   </tr>
   </tbody>
 </nz-table>
