@@ -1,37 +1,41 @@
 <div class="container">
-  <form class="login-form" style="margin: 200px auto;" nz-form [formGroup]="validateForm" class="login-form"
-        (ngSubmit)="submitForm()">
-    <nz-form-item>
-      <nz-form-control>
-        <nz-input-group nzPrefixIcon="anticon anticon-user">
-          <input type="text" nz-input formControlName="userCode" placeholder="userCode">
-        </nz-input-group>
-        <nz-form-explain *ngIf="validateForm.get('userCode').dirty && validateForm.get('userCode').errors">Please input
-          your username!
-        </nz-form-explain>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control>
-        <nz-input-group nzPrefixIcon="anticon anticon-lock">
-          <input type="password" nz-input formControlName="password" placeholder="Password">
-        </nz-input-group>
-        <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">Please input
-          your Password!
-        </nz-form-explain>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control>
-        <label nz-checkbox formControlName="remember">
-          <span>Remember me</span>
-        </label>
-        <a class="login-form-forgot" class="login-form-forgot">Forgot password</a>
-        <button nz-button class="login-form-button" [nzType]="'primary'">Log in</button>
-        Or
-        <a href="">register now!</a>
-      </nz-form-control>
-    </nz-form-item>
-  </form>
+  <div style="margin: 200px auto;">
+    <div style="text-align: center;color: beige">WEB音乐网管系统</div>
+    <form class="login-form" style="margin:0 auto;" nz-form [formGroup]="validateForm" class="login-form"
+          (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-group nzPrefixIcon="anticon anticon-user">
+            <input type="text" nz-input formControlName="userCode" placeholder="userCode">
+          </nz-input-group>
+          <nz-form-explain *ngIf="validateForm.get('userCode').dirty && validateForm.get('userCode').errors">Please input
+            your username!
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-group nzPrefixIcon="anticon anticon-lock">
+            <input type="password" nz-input formControlName="password" placeholder="Password">
+          </nz-input-group>
+          <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">Please input
+            your Password!
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <label nz-checkbox formControlName="remember">
+            <span>Remember me</span>
+          </label>
+          <a class="login-form-forgot" class="login-form-forgot">Forgot password</a>
+          <button nz-button class="login-form-button" [nzType]="'primary'">Log in</button>
+          Or
+          <a href="">register now!</a>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+
 </div>
 
