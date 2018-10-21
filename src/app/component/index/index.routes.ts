@@ -6,8 +6,9 @@ import {IndexComponent} from './index.component';
 import {LoginComponent} from '../login/login.component';
 
 export const ROUTER_CONFIG: Routes = [
+  {path: '', pathMatch: 'full', redirectTo: 'login'},
   {
-    path: '',
+    path: 'index',
     component: IndexComponent
   },
   {

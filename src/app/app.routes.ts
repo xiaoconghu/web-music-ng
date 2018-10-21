@@ -5,7 +5,7 @@ import {Routes} from '@angular/router';
 import {IndexComponent} from './component/index/index.component';
 
 export const ROUTER_CONFIG: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: '/index'},
+  {path: '', pathMatch: 'full', redirectTo: '/index/login'},
   {path: 'index', loadChildren: './component/index/index.module#IndexModule'},
   {path: 'user', loadChildren: './component/user/user.module#UserModule'},
 ];
