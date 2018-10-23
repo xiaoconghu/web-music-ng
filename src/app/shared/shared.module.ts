@@ -6,6 +6,7 @@ import {CommonModule} from '@angular/common';
 import {TableComponent} from './table/table.component';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NwFormComponent} from './nw-form';
 
 @NgModule({
   imports: [
@@ -14,15 +15,16 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [TableComponent],
+  declarations: [TableComponent, NwFormComponent],
   exports: [
     TableComponent,
+    NwFormComponent,
     NgZorroAntdModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
   ],
-  entryComponents: [TableComponent],
+  entryComponents: [TableComponent, NwFormComponent],
   providers: []
 })
 export class SharedModule {

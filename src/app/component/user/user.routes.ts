@@ -12,6 +12,7 @@ export const ROUTER_CONFIG: Routes = [
     children: [
       {path: 'user-detail/:type', component: AddUserComponent},
       {path: 'user-list', component: UserListComponent},
+      {path: 'music', loadChildren: './../music/music.module#MusicModule'},
     ]
   },
 

@@ -3,6 +3,7 @@
  */
 import {Routes} from '@angular/router';
 import {IndexComponent} from './component/index/index.component';
+import {LoginComponent} from './component/login/login.component';
 
 export const ROUTER_CONFIG: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/index/login'},

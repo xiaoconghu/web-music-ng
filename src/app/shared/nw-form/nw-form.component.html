@@ -1,0 +1,85 @@
+<form [formGroup]="formGroup">
+    <div nz-row style="padding: 20px">
+        <ng-container *ngFor="let col of column" >
+            <div nz-col [nzSpan]="col.col||14" style="display: flex;height: 48px">
+                <div style="min-width: 140px;height: 48px;line-height: 33px;" [style.flex-basis.px]="col.labelWidth||140">{{col.label}}</div>
+                <ng-container [ngSwitch]="col.type">
+                    <div style="position: relative; flex: 0" [style.flex-basis.px]="col.width||300" >
+                        <input nz-input *ngSwitchCase="'input'" type="text" formControlName="{{col.key}}"/>
+                        <nz-select *ngSwitchCase="'select'" style="width: 100%;z-index: 2"
+                                   [nzAllowClear] = "col.allowClear"
+                                   [nzPlaceHolder]="'请选择'"
+                                   (ngModelChange)="modelChange(formGroup.controls, $event, col)"
+                                   (nzOpenChange)="openChange(formGroup.controls,$event,col)"
+                                   formControlName="{{col.key}}">
+                            <nz-option
+                                *ngFor="let select of col.selectInfo.data"
+                                [nzLabel]="select[col.selectInfo.label]"
+                                [nzValue]="select[col.selectInfo.value]">
+                            </nz-option>
+                        </nz-select>
+                        <nz-radio-group *ngSwitchCase="'radio'" style="z-index: 2;line-height: 33px"
+                                        (ngModelChange)="modelChange(formGroup, $event, col)"
+                                        formControlName="{{col.key}}">
+                            <ng-container *ngFor="let radio of col.radioInfo.data">
+                                <label *ngIf="!col.isButtonStyle" nz-radio [nzValue]="radio[col.radioInfo.value || 'value']" [nzDisabled]="isDisabled" >
+                                    <span>{{radio[col.radioInfo.label || 'label']}}</span>
+                                </label>
+                                <label *ngIf="col.isButtonStyle" nz-radio-button [nzValue]="radio[col.radioInfo.value || 'value']" [nzDisabled]="isDisabled" >
+                                    <span>{{radio[col.radioInfo.label || 'label']}}</span>
+                                </label>
+                            </ng-container>
+                        </nz-radio-group>
+
+                        <nz-switch  *ngSwitchCase="'switch'"
+                                    (ngModelChange)="modelChange(formGroup, $event, col)"
+                                    [nzDisabled]="isDisabled || col.disabled"
+                                    formControlName="{{col.key}}">
+                            <span checked>{{col.openContent || ''}}</span>
+                            <span unchecked>{{col.closeContent || ''}}</span>
+                        </nz-switch>
+                        <!--<input nz-input *ngSwitchCase="'textarea'"-->
+                                  <!--style="margin-top: 12px;z-index: 2;margin-bottom: 10px;"-->
+                                  <!--formControlName="{{col.key}}"-->
+                                  <!--[nzDisabled]="isDisabled || col.disabled"-->
+                                  <!--(ngModelChange)="modelChange(formGroup, $event, col)"-->
+                                  <!--[nzType]="'textarea'"-->
+                                  <!--[nzRows]="'4'"-->
+                                  <!--[nzPlaceHolder]="'请填写'"/>-->
+
+                        <ng-container *ngSwitchCase="'number'">
+                            <nz-input-number
+                                style="width: 100%;z-index: 2"
+                                (ngModelChange)="modelChange(formGroup, $event, col)"
+                                formControlName="{{col.key}}"
+                                [nzDisabled]="isDisabled || col.disabled">
+                            </nz-input-number>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'checkbox'">
+                            <nz-checkbox-group [nzDisabled]="isDisabled || col.disabled"
+                                               (ngModelChange)="modelChange(formGroup, $event, col)"
+                                               formControlName="{{col.key}}">
+                            </nz-checkbox-group>
+                        </ng-container>
+                        <div class="lh-form-error-validate" style="z-index:99" *ngIf="formGroup.controls[col.key].pending">
+                            <i class="anticon anticon-loading anticon-spin"></i>
+                        </div>
+                        <div style="color: red" *ngIf="formGroup.controls[col.key].dirty">
+                            <div *ngFor="let ruleItem of col.rule ">
+                                <div *ngIf="formGroup.controls[col.key].hasError(ruleItem.code)">{{ruleItem.msg}}</div>
+                            </div>
+                            <ng-container *ngFor="let rule of col.asyncRules">
+                                <div class="lh-form-error-msg" *ngIf="formGroup.controls[col.key].hasError(rule.asyncCode)">
+                                    <span>{{rule.msg}}</span>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </ng-container>
+
+
+            </div>
+        </ng-container>
+
+    </div>
+</form>

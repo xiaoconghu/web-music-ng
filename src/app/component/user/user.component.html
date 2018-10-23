@@ -8,13 +8,13 @@
   <nz-layout>
     <nz-sider [nzWidth]="200" style="background:#263238;">
       <ul nz-menu [nzMode]="'inline'" style="background:#263238;width:201px;color: #939fa7;">
-        <li nz-menu-item nz-tooltip nzPlacement="right">
+        <li nz-menu-item nz-tooltip nzPlacement="right" (click)="navigate('user/music/music-list')">
             <span title>
             <i class="anticon anticon-mail"></i>
             <span>音乐列表</span>
             </span>
         </li>
-        <li nz-menu-item (click)="navigate('user')">
+        <li nz-menu-item (click)="navigate('user/user-list')">
             <span title>
               <i class="anticon anticon-appstore"></i>
               <span>用户列表</span>

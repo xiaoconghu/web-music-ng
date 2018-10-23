@@ -1,0 +1,4 @@
+<nw-form (formInstance)="formInstance($event)" [column]="column"></nw-form>
+<input type="file" id="songFile" (change)="change($event)"/>
+<button nz-button nzType="primary" (click)="save()">保存</button>
+<button nz-button nzType="default">返回</button>

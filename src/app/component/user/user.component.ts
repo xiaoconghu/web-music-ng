@@ -17,7 +17,7 @@ export class UserComponent implements OnInit {
   }
 
   public navigate(target) {
-    this.$router.navigate(['/user/user-list']).catch();
+    this.$router.navigate([target]).catch();
   }
 
 }
