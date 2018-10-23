@@ -12,6 +12,8 @@ import {Result} from '../../../core/entity/result';
 export class AddUserComponent implements OnInit {
 
   validateForm: FormGroup;
+  private type: any;
+  private id: any;
 
   constructor(private fb: FormBuilder,
               private userService: UserService,
@@ -27,10 +29,20 @@ export class AddUserComponent implements OnInit {
     console.log(this.validateForm);
     if (this.validateForm.valid) {
       const {email, password, userCode, userName, phoneNumber} = this.validateForm.getRawValue();
-      this.userService.register({email, password, userCode, userName, phoneNumber}).then(result => {
-        console.log(result);
-        this.router.navigate(['/user/user-list']);
-      });
+
+      if (this.type === 'update') {
+        const obj = {email, password, userCode, userName, phoneNumber};
+        obj['userId'] = this.id;
+        this.userService.updateUser(obj).then((res: Result) => {
+          this.router.navigate(['/user/user-list']);
+        });
+      } else {
+        this.userService.register({email, password, userCode, userName, phoneNumber}).then(result => {
+          console.log(result);
+          this.router.navigate(['/user/user-list']);
+        });
+      }
+
     }
     console.log(this.validateForm.getRawValue());
   }
@@ -54,12 +66,14 @@ export class AddUserComponent implements OnInit {
 
 
   ngOnInit(): void {
-    const type = this.activeRoute.snapshot.params.type;
-    if (type === 'update') {
+    this.type = this.activeRoute.snapshot.params.type;
+    if (this.type === 'update') {
       this.activeRoute.queryParams.subscribe(e => {
         console.log(e);
+        this.id = e.id;
         this.userService.getUserById(e.id).then((result: Result) => {
           console.log(result.data);
+          this.validateForm.reset(result.data);
         });
       });
     }

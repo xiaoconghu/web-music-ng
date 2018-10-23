@@ -35,19 +35,21 @@ export class MusicListComponent implements OnInit {
         {title: '图片', key: 'songPic'},
         {title: '歌曲类型', key: 'songType'},
         {title: '描述', key: 'description'},
+        {title: '操作', key: '', width: '200px'},
       ],
       operation: [
         {
           text: '删除',
           handle: (currentIndex) => {
             console.log(currentIndex);
+            this.deleteMusic(currentIndex.id);
           }
         },
         {
           text: '修改',
           handle: (currentIndex) => {
             console.log(currentIndex);
-            this.$router.navigate(['/user/user-detail/update'], {queryParams: {id: currentIndex.id}}).then(e => {
+            this.$router.navigate(['/user/music/music-detail/update'], {queryParams: {id: currentIndex.id}}).then(e => {
             });
           }
         }
@@ -65,6 +67,7 @@ export class MusicListComponent implements OnInit {
           handle: (currentIndex) => {
             const ids = currentIndex.map(item => item.id);
             console.log(ids);
+            this.deleteByBatch(ids);
           }
         },
       ]
@@ -78,6 +81,20 @@ export class MusicListComponent implements OnInit {
       this.message.success(re.msg);
     }, err => {
       this.message.error(err.msg);
+    });
+  }
+
+  deleteMusic(id) {
+    this.musicService.deleteMusicById(id).then((result: Result) => {
+      this.getMusicList();
+    }, err => {
+      this.message.error(err.msg);
+    });
+  }
+
+  deleteByBatch(ids) {
+    this.musicService.deleteByBatch(ids).then((result: Result) => {
+      this.getMusicList();
     });
   }
 }
