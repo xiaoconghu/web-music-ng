@@ -8,6 +8,7 @@ import {UserComponent} from './user.component';
 import {AddUserComponent} from './add-user/add-user.component';
 import {SharedModule} from '../../shared/shared.module';
 import {UserListComponent} from './user-list/user-list.component';
+import {PlayComponent} from '../play/play.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import {UserListComponent} from './user-list/user-list.component';
     RouterModule.forChild(ROUTER_CONFIG),
   ],
   exports: [],
-  declarations: [UserComponent, AddUserComponent, UserListComponent],
+  declarations: [UserComponent, AddUserComponent, UserListComponent,PlayComponent],
   entryComponents: []
 })
 export class UserModule {
