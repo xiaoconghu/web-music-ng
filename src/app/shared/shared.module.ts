@@ -7,6 +7,7 @@ import {TableComponent} from './table/table.component';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NwFormComponent} from './nw-form';
+import {TimePipe} from './pipe/time.pipe';
 
 @NgModule({
   imports: [
@@ -15,10 +16,11 @@ import {NwFormComponent} from './nw-form';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [TableComponent, NwFormComponent],
+  declarations: [TableComponent, NwFormComponent, TimePipe],
   exports: [
     TableComponent,
     NwFormComponent,
+    TimePipe,
     NgZorroAntdModule,
     CommonModule,
     FormsModule,

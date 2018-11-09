@@ -6,8 +6,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../core/api-service/user.service';
 import {Router} from '@angular/router';
 import {Result} from '../../core/entity/result';
-import {NzIconService} from 'ng-zorro-antd';
-import {ApartmentOutline} from '@ant-design/icons-angular/icons';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +17,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private userService: UserService,
-              private iconService: NzIconService,
               private router: Router) {
   }
 
@@ -41,7 +38,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.iconService.addIcon(ApartmentOutline);
     this.validateForm = this.fb.group({
       userCode: [null, [Validators.required]],
       password: [null, [Validators.required]],

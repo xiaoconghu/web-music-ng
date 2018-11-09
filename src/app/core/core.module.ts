@@ -7,6 +7,7 @@ import {SocketIO, WebSocketFactory} from './utils/websocket.service';
 import {UserService} from './api-service/user.service';
 import {MusicService} from './api-service/music.service';
 import {CommonService} from './api-service/common.service';
+import {MusicMissionService} from './mission/music-mission.service';
 
 @NgModule({
   imports: [

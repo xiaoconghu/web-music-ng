@@ -1,13 +1,30 @@
 <div style="position: fixed;bottom: 0;
-    left: 0;width: 100%">
+    left: 0;width: 100%" [hidden]="!playBoxShow">
   <div style="height: 55px;
-    background: #00802085">
-    <i class="controls" nz-icon type="retweet" theme="outline"></i>
-    <i class="controls" nz-icon type="left-circle" theme="outline"></i>
-    <i class="controls" nz-icon type="play-circle" theme="outline"></i>
-    <i class="controls" nz-icon type="right-circle" theme="outline"></i>
-    <i class="controls" nz-icon type="download" theme="outline"></i>
-    <nz-progress [nzPercent]="30"></nz-progress>
-    <audio style="text-align: center;margin: 0 auto" src="http://localhost:8888/music/song/media/39"></audio>
+      background-color: #32ab7a;display: flex">
+    <div style="    padding: 0 20px;">
+      <i class="controls" nz-icon type="retweet" theme="outline"></i>
+      <i class="controls" nz-icon type="left-circle" theme="outline"></i>
+      <i class="controls" nz-icon type="play-circle" [hidden]="isPlay" (click)="clickPlay()" theme="outline"></i>
+      <i class="controls" nz-icon type="pause-circle" [hidden]="!isPlay" (click)="clickPlay()" theme="outline"></i>
+      <i class="controls" nz-icon type="right-circle" theme="outline"></i>
+      <i class="controls" nz-icon type="download" theme="outline"></i>
+    </div>
+    <div style="flex: 1;
+    padding: 0 32px;
+    line-height: 44px;display: flex">
+      <span>{{currentTime*1000|timePipe}}</span>
+      <nz-progress style="flex: 1;margin: 0 20px" [nzPercent]="(currentTime/playTime)*100"
+                   [nzShowInfo]="false"></nz-progress>
+      <span>{{playTime*1000|timePipe}}</span>
+    </div>
+    <audio style="text-align: center;margin: 0 auto"
+           id="play"
+           (ended)="ended()"
+           (play)='songReady($event)'
+           [src]="playUrl"
+           (canplay)="canPlay($event)"
+           (timeupdate)="timeUpdate($event)"
+    ></audio>
   </div>
 </div>

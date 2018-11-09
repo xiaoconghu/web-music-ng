@@ -9,14 +9,16 @@ import {AddUserComponent} from './add-user/add-user.component';
 import {SharedModule} from '../../shared/shared.module';
 import {UserListComponent} from './user-list/user-list.component';
 import {PlayComponent} from '../play/play.component';
+import {CoreModule} from '../../core/core.module';
 
 @NgModule({
   imports: [
     SharedModule,
+    CoreModule,
     RouterModule.forChild(ROUTER_CONFIG),
   ],
   exports: [],
-  declarations: [UserComponent, AddUserComponent, UserListComponent,PlayComponent],
+  declarations: [UserComponent, AddUserComponent, UserListComponent, PlayComponent],
   entryComponents: []
 })
 export class UserModule {

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MusicMissionService} from '../../core/mission/music-mission.service';
 
 @Component({
   selector: 'app-music',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MusicComponent implements OnInit {
 
-  constructor() { }
+  constructor(private mission: MusicMissionService) {
+  }
 
   ngOnInit() {
+    this.mission.musicChange.subscribe(e => {
+      console.log(e);
+    });
   }
 
 }

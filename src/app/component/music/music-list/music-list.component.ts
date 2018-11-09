@@ -6,6 +6,7 @@ import {Music} from '../../../core/entity/music';
 import {MusicService} from '../../../core/api-service/music.service';
 import {Result} from '../../../core/entity/result';
 import {NzMessageService} from 'ng-zorro-antd';
+import {MusicMissionService} from '../../../core/mission/music-mission.service';
 
 @Component({
   selector: 'app-music-list',
@@ -19,8 +20,8 @@ export class MusicListComponent implements OnInit {
 
   constructor(private $router: Router,
               private musicService: MusicService,
-              private message: NzMessageService
-  ) {
+              private message: NzMessageService,
+              private mission: MusicMissionService) {
   }
 
 
@@ -43,6 +44,13 @@ export class MusicListComponent implements OnInit {
           handle: (currentIndex) => {
             console.log(currentIndex);
             this.deleteMusic(currentIndex.id);
+          }
+        },
+        {
+          text: '播放',
+          handle: (currentIndex) => {
+            console.log(currentIndex);
+            this.playMusic(currentIndex);
           }
         },
         {
@@ -96,5 +104,9 @@ export class MusicListComponent implements OnInit {
     this.musicService.deleteByBatch(ids).then((result: Result) => {
       this.getMusicList();
     });
+  }
+
+  private playMusic(currentMusic) {
+    this.mission.commitMusic(currentMusic);
   }
 }
