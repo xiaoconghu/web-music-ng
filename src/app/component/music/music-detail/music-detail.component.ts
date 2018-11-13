@@ -16,6 +16,7 @@ export class MusicDetailComponent implements OnInit {
   private songFile: any;
   type;
   id;
+
   constructor(private musicService: MusicService,
               private $router: Router,
               private activeRoute: ActivatedRoute,
@@ -74,5 +75,9 @@ export class MusicDetailComponent implements OnInit {
     }
 
 
+  }
+
+  goBack() {
+    history.go(-1);
   }
 }

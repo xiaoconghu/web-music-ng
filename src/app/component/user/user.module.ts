@@ -10,6 +10,7 @@ import {SharedModule} from '../../shared/shared.module';
 import {UserListComponent} from './user-list/user-list.component';
 import {PlayComponent} from '../play/play.component';
 import {CoreModule} from '../../core/core.module';
+import {PlayProgressComponent} from '../play/play-progress/play-progress.component';
 
 @NgModule({
   imports: [
@@ -18,8 +19,8 @@ import {CoreModule} from '../../core/core.module';
     RouterModule.forChild(ROUTER_CONFIG),
   ],
   exports: [],
-  declarations: [UserComponent, AddUserComponent, UserListComponent, PlayComponent],
-  entryComponents: []
+  declarations: [UserComponent, AddUserComponent, UserListComponent, PlayProgressComponent, PlayComponent],
+  entryComponents: [PlayProgressComponent]
 })
 export class UserModule {
 }

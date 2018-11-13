@@ -15,6 +15,7 @@ import {SharedModule} from './shared/shared.module';
 import {NoopInterceptor} from './noop-interceptor';
 import {NgxEchartsModule} from 'ngx-echarts';
 import {MusicMissionService} from './core/mission/music-mission.service';
+import { PlayProgressComponent } from './component/play/play-progress/play-progress.component';
 registerLocaleData(zh);
 @NgModule({
   declarations: [

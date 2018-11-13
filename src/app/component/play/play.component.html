@@ -14,8 +14,18 @@
     padding: 0 32px;
     line-height: 44px;display: flex">
       <span>{{currentTime*1000|timePipe}}</span>
-      <nz-progress style="flex: 1;margin: 0 20px" [nzPercent]="(currentTime/playTime)*100"
-                   [nzShowInfo]="false"></nz-progress>
+      <!--<nz-progress style="flex: 1;margin: 0 20px" [nzPercent]="(currentTime/playTime)*100"-->
+      <!--[nzShowInfo]="false"></nz-progress>-->
+      <app-play-progress style="flex: 1;margin: 0 20px"
+                         [value]="(currentTime/playTime)*100"
+                         [max]="playTime"
+                         [min]="0"
+                         [step]="1"
+                         [barHeight]="1"
+                         [disabled]="false"
+                         (dragEvent)="rangeChange($event)"
+                         (dragEndEvent)="rangeChangeEnd($event)"
+      ></app-play-progress>
       <span>{{playTime*1000|timePipe}}</span>
     </div>
     <audio style="text-align: center;margin: 0 auto"

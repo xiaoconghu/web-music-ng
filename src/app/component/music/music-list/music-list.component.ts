@@ -86,7 +86,6 @@ export class MusicListComponent implements OnInit {
   public getMusicList() {
     this.musicService.getMusicList().then((re: Result) => {
       this.dataSet = re.data;
-      this.message.success(re.msg);
     }, err => {
       this.message.error(err.msg);
     });
@@ -94,6 +93,7 @@ export class MusicListComponent implements OnInit {
 
   deleteMusic(id) {
     this.musicService.deleteMusicById(id).then((result: Result) => {
+      this.message.success(result.msg);
       this.getMusicList();
     }, err => {
       this.message.error(err.msg);

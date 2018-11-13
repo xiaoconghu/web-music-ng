@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../core/api-service/user.service';
 import {Router} from '@angular/router';
 import {Result} from '../../core/entity/result';
+import {NzMessageService} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private userService: UserService,
+              private message: NzMessageService,
               private router: Router) {
   }
 
@@ -28,10 +30,13 @@ export class LoginComponent implements OnInit {
     if (this.validateForm.valid) {
       this.userService.login(this.validateForm.getRawValue()).then((e: Result) => {
         console.log(e);
+        this.message.success(e.msg);
         if (e.code === 0) {
           this.router.navigate(['user/user-list']).then(e => {
           });
         }
+      }, err => {
+        this.message.error(err.msg);
       });
     }
 
