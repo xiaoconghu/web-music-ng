@@ -34,12 +34,12 @@ export class AddUserComponent implements OnInit {
         const obj = {email, password, userCode, userName, phoneNumber};
         obj['userId'] = this.id;
         this.userService.updateUser(obj).then((res: Result) => {
-          this.router.navigate(['/user/user-list']);
+          this.router.navigate(['/user/user-list']).then();
         });
       } else {
         this.userService.register({email, password, userCode, userName, phoneNumber}).then(result => {
           console.log(result);
-          this.router.navigate(['/user/user-list']);
+          this.router.navigate(['/user/user-list']).then();
         });
       }
 

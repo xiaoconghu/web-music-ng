@@ -2,7 +2,6 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MusicMissionService} from '../../core/mission/music-mission.service';
 import {Music} from '../../core/entity/music';
 import {NzMessageService} from 'ng-zorro-antd';
-import {CommonUtils} from '../../core/utils/commonUtils';
 
 @Component({
   selector: 'app-play',
@@ -39,9 +38,7 @@ export class PlayComponent implements OnInit, AfterViewInit {
   }
 
   songReady(e) {
-    // this.message.success('开始播放歌曲');
-    // this.playTime = this.audio.duration;
-    // console.log(this.playTime);
+    this.message.success('开始播放歌曲');
   }
 
   ended() {
@@ -50,7 +47,6 @@ export class PlayComponent implements OnInit, AfterViewInit {
 
   timeUpdate(e) {
     this.currentTime = e.target.currentTime;
-    console.log(this.audio.buffered);
   }
 
   canPlay(e) {
@@ -63,7 +59,6 @@ export class PlayComponent implements OnInit, AfterViewInit {
   }
 
   rangeChange(evt) {
-    console.log('拖拽中', evt.currentTime);
     this.currentTime = evt.currentTime;
     if (this.isPlay) {
       this.audio.pause();
