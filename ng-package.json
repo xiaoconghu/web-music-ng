@@ -1,0 +1,30 @@
+{
+  "$schema": "./node_modules/ng-packagr.schema.json",
+  "lib": {
+    "entryFile": "./src/public_api.ts",
+    "cssUrl": "inline",
+    "languageLevel": [
+      "dom",
+      "es2017"
+    ]
+  },
+  "whitelistedNonPeerDependencies": [
+    "@angular/animations",
+    "@angular/common",
+    "@angular/compiler",
+    "@angular/core",
+    "@angular/forms",
+    "@angular/http",
+    "@angular/platform-browser",
+    "@angular/platform-browser-dynamic",
+    "@angular/router",
+    "core-js",
+    "ng-zorro-antd",
+    "rxjs",
+    "zone.js",
+    "echarts",
+    "sockjs",
+    "stompjs",
+    "wx-music"
+  ]
+}

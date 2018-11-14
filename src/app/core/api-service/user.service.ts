@@ -3,6 +3,7 @@
  */
 import {Injectable} from '@angular/core';
 import {CommonService} from './common.service';
+import {HttpHeaders} from '@angular/common/http';
 
 @Injectable()
 export class UserService {
@@ -41,5 +42,4 @@ export class UserService {
   getUserById(id: any) {
     return this.commonService.getData('get', `music/user/getUserById/${id}`);
   }
-
 }

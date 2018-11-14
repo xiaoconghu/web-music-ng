@@ -9,8 +9,8 @@ export class WebSocketFactory {
 
   /**
    * injector single instance
-   * @param {Provider} type
-   * @returns {SocketIO}
+   * param {Provider} type
+   * returns {SocketIO}
    */
   static forRoot(type?: Provider) {
     if (!WebSocketFactory.instance) {
@@ -29,20 +29,20 @@ export abstract class SocketIO {
   /**
    * open one topic and record it in this instance
    * @deprecated use `openTopic` instead
-   * @param topic
+   * param topic
    */
   abstract openTopicOld(topic);
 
   /**
    * open one topic and record it in this instance
-   * @param topic
-   * @param fn
+   * param topic
+   * param fn
    */
   abstract openTopic(topic, fn);
 
   /**
    * close some topic by name
-   * @param topic
+   * param topic
    */
   abstract closeTopic(topic);
 
@@ -53,13 +53,13 @@ export abstract class SocketIO {
 
   /**
    * return the subscribe when topic has establish
-   * @param fn
+   * param fn
    */
   abstract subscribe(fn);
 
   /**
    * return a promise object of topic
-   * @param fn
+   * param fn
    */
   abstract then(fn);
 }

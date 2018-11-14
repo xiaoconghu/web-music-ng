@@ -18,7 +18,7 @@ export class MusicMissionService {
 
   /**
    * 提交音乐
-   * @param e<any>
+   * param e<any>
    */
   public commitMusic(e: any) {
     this.music.next(e);
