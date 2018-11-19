@@ -27,7 +27,9 @@ export default function (element, options) {
   };
 
   element.addEventListener(supportTouch ? 'touchstart' : 'mousedown', function (event) {
-    if (isDragging) return;
+    if (isDragging) {
+      return;
+    }
     event.preventDefault();
     document.onselectstart = function () {
       return false;
@@ -52,4 +54,5 @@ export default function (element, options) {
     element.addEventListener('touchend', endFn);
     element.addEventListener('touchcancel', endFn);
   }
-};
+}
+

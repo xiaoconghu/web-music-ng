@@ -34,7 +34,7 @@ export class WebsocketService implements SocketIO {
 
   closeTopic(topic) {
     try {
-      let _index = this.subscriptions.findIndex(item => item.topic === topic);
+      const _index = this.subscriptions.findIndex(item => item.topic === topic);
       if (_index !== -1) {
         this.subscriptions.splice(_index, 1)[0].subscription.unsubscribe();
       }
@@ -65,7 +65,7 @@ export class WebsocketService implements SocketIO {
       return;
     }
     if (this.stompClient && this.stompClient.connected) {
-      let subscription = this.stompClient.subscribe(topic, success => {
+      const subscription = this.stompClient.subscribe(topic, success => {
         if (this.__fn) {
           this.__fn(success['body']);
         }

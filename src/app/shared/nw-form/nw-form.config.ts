@@ -37,156 +37,6 @@ export class Rule {
 
 }
 
-export class FormOperate implements FormOperateInterface {
-
-  group: FormGroup;
-  column;
-
-  constructor(group, column) {
-    this.group = group;
-    this.column = column;
-  }
-
-  createColumn() {
-
-  }
-
-  addColumn(formItem: FormItem, _index?: number) {
-    let index = this.getColumn(formItem.key).index;
-    if (index === -1) {
-      let validator = this.addRule(formItem.rule);
-      let asyncValidator = this.addAsyncRule(formItem.asyncRules);
-      let formControl = new FormControl(formItem.initialValue || '', validator, asyncValidator);
-      this.group.addControl(formItem.key, formControl);
-      if (_index && _index !== 0) {
-        this.column.splice(_index, 0, formItem);
-      } else {
-        this.column.push(formItem);
-      }
-
-    } else {
-
-    }
-
-  }
-
-  deleteColumn(key): void {
-    let index = this.getColumn(key).index;
-    if (index !== -1) {
-      this.column.splice(index, 1);
-      this.group.removeControl(key);
-    } else {
-
-    }
-
-  }
-
-  getColumn(key): { index: number, item?: FormItem } {
-    let index = this.column.findIndex(item => item.key === key);
-    if (index === -1) {
-      return {index: index, item: this.column[index]};
-
-    } else {
-      return {index: index};
-    }
-  }
-
-  addValidRule(formItem: FormItem): void {
-    let validator = this.addRule(formItem.rule);
-    this.group.controls[formItem.key].setValidators(validator);
-  }
-
-  deleteValidRule(formItem: FormItem): void {
-    this.group.controls[formItem.key].clearValidators();
-    this.deleteRule(formItem.rule);
-  }
-
-  addRule(rule: Rule[]): ValidatorFn[] {
-    let validator = [];
-    if (rule) {
-      rule.forEach(item => {
-        if (item.hasOwnProperty('required')) {
-          validator.push(Validators.required);
-          item.msg = item.msg || '此项为必填向！';
-          item.code = 'required';
-        }
-        if (item.hasOwnProperty('minLength')) {
-          validator.push(Validators.minLength(item.minLength));
-          item.msg = item.msg || `最少输入${item.minLength}位！`;
-          item.code = 'minlength';
-        }
-        if (item.hasOwnProperty('maxLength')) {
-          validator.push(Validators.maxLength(item.maxLength));
-          item.msg = item.msg || `最多输入${item.maxLength}位！`;
-          item.code = 'maxlength';
-        }
-        if (item.hasOwnProperty('min')) {
-          item.code = 'min';
-          item.msg = item.msg || `不能小于${item.min}`;
-          validator.push(Validators.min(item.min));
-        }
-        if (item.hasOwnProperty('max')) {
-          item.code = 'max';
-          item.msg = item.msg || `不能大于${item.max}`;
-          validator.push(Validators.max(item.max));
-        }
-        if (item.hasOwnProperty('email')) {
-          item.code = 'email';
-          item.msg = item.msg || `邮箱格式有误`;
-          validator.push(Validators.email);
-        }
-        if (item.hasOwnProperty('pattern')) {
-          item.code = 'pattern';
-          item.msg = item.msg || '正则验证错误';
-          validator.push(Validators.pattern(new RegExp(item.pattern)));
-        }
-      });
-    }
-
-    return validator;
-  }
-
-
-  addAsyncRule(rules: { asyncRule: AsyncValidatorFn, asyncCode: any }[]): AsyncValidatorFn[] {
-    let control = [];
-    if (rules) {
-      rules.forEach((rule) => {
-        control.push(rule.asyncRule);
-      });
-    }
-    return control;
-  }
-
-  deleteRule(rule: Rule[]): void {
-    rule = [];
-  }
-
-  resetData(value?: any, options?: { onlySelf?: boolean; emitEvent?: boolean; }): void {
-    this.group.reset(value, options);
-  }
-
-  resetControlData(key: string, value?: any, options?: object): void {
-    this.group.controls[key].reset(value, options);
-  }
-
-  getData(key?: string): any {
-    if (key) {
-      return this.group.controls[key].value;
-    } else {
-      return this.group.value;
-    }
-  }
-
-  getValid(key?: string): boolean {
-    if (key) {
-      return this.group.controls[key].valid;
-    } else {
-      return this.group.valid;
-    }
-  }
-}
-
-
 export interface FormOperateInterface {
   /**
    * 创建列
@@ -243,14 +93,14 @@ export interface FormOperateInterface {
    * 删除错误信息
    * param {Rule[]} rule
    */
-  deleteRule(rule: Rule[]): void
+  deleteRule(rule: Rule[]): void;
 
   /**
    * 重置所有的列
    * param value
    * param {{onlySelf?: boolean; emitEvent?: boolean}} options
    */
-  resetData(value?: any, options?: { onlySelf?: boolean; emitEvent?: boolean; })
+  resetData(value?: any, options?: { onlySelf?: boolean; emitEvent?: boolean; });
 
   /**
    * 重置单个列
@@ -275,3 +125,154 @@ export interface FormOperateInterface {
 
 
 }
+
+export class FormOperate implements FormOperateInterface {
+
+  group: FormGroup;
+  column;
+
+  constructor(group, column) {
+    this.group = group;
+    this.column = column;
+  }
+
+  createColumn() {
+
+  }
+
+  addColumn(formItem: FormItem, _index?: number) {
+    const index = this.getColumn(formItem.key).index;
+    if (index === -1) {
+      const validator = this.addRule(formItem.rule);
+      const asyncValidator = this.addAsyncRule(formItem.asyncRules);
+      const formControl = new FormControl(formItem.initialValue || '', validator, asyncValidator);
+      this.group.addControl(formItem.key, formControl);
+      if (_index && _index !== 0) {
+        this.column.splice(_index, 0, formItem);
+      } else {
+        this.column.push(formItem);
+      }
+
+    } else {
+
+    }
+
+  }
+
+  deleteColumn(key): void {
+    const index = this.getColumn(key).index;
+    if (index !== -1) {
+      this.column.splice(index, 1);
+      this.group.removeControl(key);
+    } else {
+
+    }
+
+  }
+
+  getColumn(key): { index: number, item?: FormItem } {
+    const index = this.column.findIndex(item => item.key === key);
+    if (index === -1) {
+      return {index: index, item: this.column[index]};
+
+    } else {
+      return {index: index};
+    }
+  }
+
+  addValidRule(formItem: FormItem): void {
+    const validator = this.addRule(formItem.rule);
+    this.group.controls[formItem.key].setValidators(validator);
+  }
+
+  deleteValidRule(formItem: FormItem): void {
+    this.group.controls[formItem.key].clearValidators();
+    this.deleteRule(formItem.rule);
+  }
+
+  addRule(rule: Rule[]): ValidatorFn[] {
+    const validator = [];
+    if (rule) {
+      rule.forEach(item => {
+        if (item.hasOwnProperty('required')) {
+          validator.push(Validators.required);
+          item.msg = item.msg || '此项为必填向！';
+          item.code = 'required';
+        }
+        if (item.hasOwnProperty('minLength')) {
+          validator.push(Validators.minLength(item.minLength));
+          item.msg = item.msg || `最少输入${item.minLength}位！`;
+          item.code = 'minlength';
+        }
+        if (item.hasOwnProperty('maxLength')) {
+          validator.push(Validators.maxLength(item.maxLength));
+          item.msg = item.msg || `最多输入${item.maxLength}位！`;
+          item.code = 'maxlength';
+        }
+        if (item.hasOwnProperty('min')) {
+          item.code = 'min';
+          item.msg = item.msg || `不能小于${item.min}`;
+          validator.push(Validators.min(item.min));
+        }
+        if (item.hasOwnProperty('max')) {
+          item.code = 'max';
+          item.msg = item.msg || `不能大于${item.max}`;
+          validator.push(Validators.max(item.max));
+        }
+        if (item.hasOwnProperty('email')) {
+          item.code = 'email';
+          item.msg = item.msg || `邮箱格式有误`;
+          validator.push(Validators.email);
+        }
+        if (item.hasOwnProperty('pattern')) {
+          item.code = 'pattern';
+          item.msg = item.msg || '正则验证错误';
+          validator.push(Validators.pattern(new RegExp(item.pattern)));
+        }
+      });
+    }
+
+    return validator;
+  }
+
+
+  addAsyncRule(rules: { asyncRule: AsyncValidatorFn, asyncCode: any }[]): AsyncValidatorFn[] {
+    const control = [];
+    if (rules) {
+      rules.forEach((rule) => {
+        control.push(rule.asyncRule);
+      });
+    }
+    return control;
+  }
+
+  deleteRule(rule: Rule[]): void {
+    rule = [];
+  }
+
+  resetData(value?: any, options?: { onlySelf?: boolean; emitEvent?: boolean; }): void {
+    this.group.reset(value, options);
+  }
+
+  resetControlData(key: string, value?: any, options?: object): void {
+    this.group.controls[key].reset(value, options);
+  }
+
+  getData(key?: string): any {
+    if (key) {
+      return this.group.controls[key].value;
+    } else {
+      return this.group.value;
+    }
+  }
+
+  getValid(key?: string): boolean {
+    if (key) {
+      return this.group.controls[key].valid;
+    } else {
+      return this.group.valid;
+    }
+  }
+}
+
+

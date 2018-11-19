@@ -3,7 +3,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {FormItem, FormOperate} from './nw-form.config';
 
 @Component({
-  selector: 'nw-form',
+  selector: 'app-nw-form',
   templateUrl: './nw-form.component.html',
   styleUrls: ['./nw-form.component.less']
 })
@@ -13,7 +13,7 @@ export class NwFormComponent implements OnInit, OnChanges {
   column;
   formGroup = new FormGroup({});
   @Input()
-  isDisabled: boolean = false;
+  isDisabled: boolean;
   @Output()
   formInstance = new EventEmitter();
   formOperate: FormOperate;

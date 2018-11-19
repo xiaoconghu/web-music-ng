@@ -23,16 +23,18 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm(): void {
-    for (const i in this.validateForm.controls) {
-      this.validateForm.controls[i].markAsDirty();
-      this.validateForm.controls[i].updateValueAndValidity();
+    if (this.validateForm.controls) {
+      for (const key of Object.keys(this.validateForm.controls)) {
+        this.validateForm.controls[key].markAsDirty();
+        this.validateForm.controls[key].updateValueAndValidity();
+      }
     }
     if (this.validateForm.valid) {
       this.userService.login(this.validateForm.getRawValue()).then((e: Result) => {
         console.log(e);
         this.message.success(e.msg);
         if (e.code === 0) {
-          this.router.navigate(['user/user-list']).then(e => {
+          this.router.navigate(['user/user-list']).then(() => {
           });
         }
       }, err => {

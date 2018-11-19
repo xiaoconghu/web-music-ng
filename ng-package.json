@@ -24,7 +24,6 @@
     "zone.js",
     "echarts",
     "sockjs",
-    "stompjs",
-    "wx-music"
+    "stompjs"
   ]
 }

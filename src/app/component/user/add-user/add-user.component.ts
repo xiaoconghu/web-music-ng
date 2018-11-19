@@ -22,7 +22,7 @@ export class AddUserComponent implements OnInit {
   }
 
   submitForm(): void {
-    for (const i in this.validateForm.controls) {
+    for (const i of Object.keys(this.validateForm.controls)) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
@@ -58,7 +58,7 @@ export class AddUserComponent implements OnInit {
     } else if (control.value !== this.validateForm.controls.password.value) {
       return {confirm: true, error: true};
     }
-  };
+  }
 
   getCaptcha(e: MouseEvent): void {
     e.preventDefault();
