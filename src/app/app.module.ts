@@ -14,7 +14,7 @@ import {CoreModule} from './core/core.module';
 import {NoopInterceptor} from './noop-interceptor';
 import {NgxEchartsModule} from 'ngx-echarts';
 import {MusicMissionService} from './core/mission/music-mission.service';
-import {SharedModule} from 'wx-music';
+import {SharedModule} from './shared/shared.module';
 registerLocaleData(zh);
 @NgModule({
   declarations: [
