@@ -7,6 +7,10 @@ import {ROUTER_CONFIG} from './music.route';
 import {CoreModule} from '../../core/core.module';
 import {SharedModule} from '../../shared/shared.module';
 import { MusicDetailComponent } from './music-detail/music-detail.component';
+import { SingerListComponent } from './singer-list/singer-list.component';
+import { CdListComponent } from './cd-list/cd-list.component';
+import { SingerDetailComponent } from './singer-detail/singer-detail.component';
+import { CdDetailComponent } from './cd-detail/cd-detail.component';
 
 @NgModule({
   imports: [
@@ -15,6 +19,6 @@ import { MusicDetailComponent } from './music-detail/music-detail.component';
     SharedModule,
     RouterModule.forChild(ROUTER_CONFIG)
   ],
-  declarations: [MusicComponent, MusicListComponent, MusicDetailComponent]
+  declarations: [MusicComponent, MusicListComponent, MusicDetailComponent, SingerListComponent, CdListComponent, SingerDetailComponent, CdDetailComponent]
 })
 export class MusicModule { }

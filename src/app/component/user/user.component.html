@@ -12,7 +12,19 @@
         <li nz-menu-item nz-tooltip nzPlacement="right" (click)="navigate('user/music/music-list')">
             <span title>
             <i class="anticon anticon-mail"></i>
-            <span>音乐1111111列表</span>
+            <span>音乐列表</span>
+            </span>
+        </li>
+        <li nz-menu-item nz-tooltip nzPlacement="right" (click)="navigate('user/music/singer-list')">
+            <span title>
+            <i class="anticon anticon-mail"></i>
+            <span>歌手列表</span>
+            </span>
+        </li>
+        <li nz-menu-item nz-tooltip nzPlacement="right" (click)="navigate('user/music/cd-list')">
+            <span title>
+            <i class="anticon anticon-mail"></i>
+            <span>歌单列表</span>
             </span>
         </li>
         <li nz-menu-item (click)="navigate('user/user-list')">
@@ -34,7 +46,7 @@
   height:calc(100vh - 133px);padding: 24px 24px 0 24px;overflow: auto ">
         <router-outlet></router-outlet>
       </nz-content>
-      <nz-footer style="text-align: center;background: #f6fafb">Ant Design ©2017 Implement By Angular</nz-footer>
+      <nz-footer style="text-align: center;background: #f6fafb">app-music ©2017 Implement By xiaoconghu</nz-footer>
     </nz-layout>
   </nz-layout>
 </nz-layout>
