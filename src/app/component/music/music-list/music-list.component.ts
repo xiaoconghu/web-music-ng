@@ -106,6 +106,10 @@ export class MusicListComponent implements OnInit {
     });
   }
 
+  pageChange(event) {
+
+  }
+
   private playMusic(currentMusic) {
     this.mission.commitMusic(currentMusic);
   }

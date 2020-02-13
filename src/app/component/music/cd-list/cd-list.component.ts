@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import {Singer} from '../../../core/entity/singer';
+import {Component, OnInit} from '@angular/core';
 import {TableConfig} from '../../../core/entity/tableConfig';
 import {PageBean} from '../../../core/entity/pageBean';
 import {MusicService} from '../../../core/api-service/music.service';
 import {MusicMissionService} from '../../../core/mission/music-mission.service';
 import {Result} from '../../../core/entity/result';
 import {CdInfo} from '../../../core/entity/cd-info';
-import { Router } from '@angular/router';
-import { NzMessageService } from 'ng-zorro-antd';
+import {Router} from '@angular/router';
+import {NzMessageService} from 'ng-zorro-antd';
+import {CdInfoService} from '../../../core/api-service/cd-info.service';
 
 @Component({
   selector: 'nw-cd-list',
@@ -20,7 +20,7 @@ export class CdListComponent implements OnInit {
   pageBean: PageBean = new PageBean(10, 1, 1);
 
   constructor(private $router: Router,
-              private musicService: MusicService,
+              private cdInfoService: CdInfoService,
               private message: NzMessageService,
               private mission: MusicMissionService) {
   }
@@ -48,16 +48,16 @@ export class CdListComponent implements OnInit {
         {
           text: '修改',
           handle: (currentIndex) => {
-            this.$router.navigate(['/user/music/music-detail/update'], {queryParams: {id: currentIndex.id}}).then(e => {
+            this.$router.navigate(['/user/music/cd-detail/update'], {queryParams: {id: currentIndex.id}}).then(e => {
             });
           }
         }
       ],
       topButtons: [
         {
-          text: '新增歌手',
+          text: '新增歌单',
           handle: (currentIndex) => {
-            this.$router.navigate(['/user/music/music-detail/add']).then(e => {
+            this.$router.navigate(['/user/music/cd-detail/add']).then(e => {
             });
           }
         },
@@ -75,7 +75,7 @@ export class CdListComponent implements OnInit {
   }
 
   public getMusicList() {
-    this.musicService.getMusicList().then((re: Result) => {
+    this.cdInfoService.getMusicList().then((re: Result) => {
       this.dataSet = re.data;
     }, err => {
       this.message.error(err.msg);
@@ -83,7 +83,7 @@ export class CdListComponent implements OnInit {
   }
 
   deleteMusic(id) {
-    this.musicService.deleteMusicById(id).then((result: Result) => {
+    this.cdInfoService.deleteMusicById(id).then((result: Result) => {
       this.message.success(result.msg);
       this.getMusicList();
     }, err => {
@@ -92,9 +92,13 @@ export class CdListComponent implements OnInit {
   }
 
   deleteByBatch(ids) {
-    this.musicService.deleteByBatch(ids).then((result: Result) => {
+    this.cdInfoService.deleteByBatch(ids).then((result: Result) => {
       this.getMusicList();
     });
+  }
+
+  pageChange(event) {
+
   }
 
   private playMusic(currentMusic) {

@@ -97,7 +97,9 @@ export class SingerListComponent implements OnInit {
       this.getMusicList();
     });
   }
+  pageChange(event) {
 
+  }
   private playMusic(currentMusic) {
     this.mission.commitMusic(currentMusic);
   }

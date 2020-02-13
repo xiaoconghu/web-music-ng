@@ -91,5 +91,7 @@ export class UserListComponent implements OnInit {
       this.getUserList();
     });
   }
+  pageChange(event) {
 
+  }
 }

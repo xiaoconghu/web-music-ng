@@ -9,6 +9,7 @@ import {MusicService} from './api-service/music.service';
 import {CommonService} from './api-service/common.service';
 import {MusicMissionService} from './mission/music-mission.service';
 import {SingerService} from './api-service/singer.service';
+import {CdInfoService} from './api-service/cd-info.service';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import {SingerService} from './api-service/singer.service';
     {provide: UserService, useClass: UserService},
     {provide: MusicService, useClass: MusicService},
     {provide: SingerService, useClass: SingerService},
+    {provide: CdInfoService, useClass: CdInfoService},
     {provide: CommonService, useClass: CommonService},
     {
       provide: SocketIO, useFactory: () => {
