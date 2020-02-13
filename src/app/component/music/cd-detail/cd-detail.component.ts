@@ -30,7 +30,7 @@ export class CdDetailComponent implements OnInit {
     if (this.type === 'update') {
       this.activeRoute.queryParams.subscribe(e => {
         this.id = e.id;
-        this.singerService.getUserById(e.id).then((result: Result) => {
+        this.cdInfoService.getUserById(e.id).then((result: Result) => {
           console.log(result.data);
           this.formOperate.resetData(result.data);
         });
