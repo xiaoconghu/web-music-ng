@@ -2,12 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {PageBean} from '../../../core/entity/pageBean';
 import {TableConfig} from '../../../core/entity/tableConfig';
-import {Music} from '../../../core/entity/music';
-import {MusicService} from '../../../core/api-service/music.service';
 import {Result} from '../../../core/entity/result';
 import {NzMessageService} from 'ng-zorro-antd';
 import {MusicMissionService} from '../../../core/mission/music-mission.service';
 import {Singer} from '../../../core/entity/singer';
+import {SingerService} from '../../../core/api-service/singer.service';
 
 @Component({
   selector: 'nw-singer-list',
@@ -20,7 +19,7 @@ export class SingerListComponent implements OnInit {
   pageBean: PageBean = new PageBean(10, 1, 1);
 
   constructor(private $router: Router,
-              private musicService: MusicService,
+              private singerService: SingerService,
               private message: NzMessageService,
               private mission: MusicMissionService) {
   }
@@ -50,7 +49,7 @@ export class SingerListComponent implements OnInit {
         {
           text: '修改',
           handle: (currentIndex) => {
-            this.$router.navigate(['/user/music/music-detail/update'], {queryParams: {id: currentIndex.id}}).then(e => {
+            this.$router.navigate(['/user/music/singer-detail/update'], {queryParams: {id: currentIndex.id}}).then(e => {
             });
           }
         }
@@ -77,7 +76,7 @@ export class SingerListComponent implements OnInit {
   }
 
   public getMusicList() {
-    this.musicService.getMusicList().then((re: Result) => {
+    this.singerService.getMusicList().then((re: Result) => {
       this.dataSet = re.data;
     }, err => {
       this.message.error(err.msg);
@@ -85,7 +84,7 @@ export class SingerListComponent implements OnInit {
   }
 
   deleteMusic(id) {
-    this.musicService.deleteMusicById(id).then((result: Result) => {
+    this.singerService.deleteMusicById(id).then((result: Result) => {
       this.message.success(result.msg);
       this.getMusicList();
     }, err => {
@@ -94,7 +93,7 @@ export class SingerListComponent implements OnInit {
   }
 
   deleteByBatch(ids) {
-    this.musicService.deleteByBatch(ids).then((result: Result) => {
+    this.singerService.deleteByBatch(ids).then((result: Result) => {
       this.getMusicList();
     });
   }

@@ -57,16 +57,17 @@ export class SingerDetailComponent implements OnInit {
   }
 
   save() {
+    console.log(this.type);
     if (this.type === 'update') {
       const body = this.formOperate.getData();
       body.id = this.id;
       this.singerService.update(body).then((res: Result) => {
-        this.$router.navigate(['/user/music/music-list']);
+        this.$router.navigate(['/user/music/singer-list']);
       });
     } else {
       const _bod: Object = this.formOperate.getData();
       this.singerService.save(_bod).then((re: Result) => {
-        this.$router.navigate(['/user/music/music-list']);
+        this.$router.navigate(['/user/music/singer-list']);
         this.message.success(re.msg);
       }, err => {
         this.message.error(err.msg);

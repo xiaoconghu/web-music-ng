@@ -8,7 +8,7 @@ export class SingerService {
   }
 
   public getMusicList() {
-    return this.c.getData('get', `/music/song/query`);
+    return this.c.getData('get', `/music/singer/query`);
   }
 
 
@@ -17,18 +17,18 @@ export class SingerService {
   }
 
   deleteMusicById(id) {
-    return this.c.getData('delete', `/music/song/delete/${id}`);
+    return this.c.getData('delete', `/music/singer/delete/${id}`);
   }
 
   deleteByBatch(ids: any) {
-    return this.c.getData('post', `/music/song/deleteByBatch`, ids);
+    return this.c.getData('post', `/music/singer/deleteByBatch`, ids);
   }
 
   getUserById(songId: any) {
-    return this.c.getData('get', `/music/song/queryById/${songId}`);
+    return this.c.getData('get', `/music/singer/queryById/${songId}`);
   }
 
   update(body: any) {
-    return this.c.getData('put', `/music/song/update`, body);
+    return this.c.getData('put', `/music/singer/update`, body);
   }
 }
