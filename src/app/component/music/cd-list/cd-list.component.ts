@@ -32,6 +32,7 @@ export class CdListComponent implements OnInit {
       showPagination: false,
       columnConfig: [
         {title: '歌单名称', key: 'cdName'},
+        {title: '所属歌手', key: 'singerName'},
         {title: '上传时间', key: 'createTime'},
         {title: '歌单图片', key: 'singerPic'},
         {title: '描述', key: 'description'},
@@ -42,7 +43,7 @@ export class CdListComponent implements OnInit {
           text: '删除',
           handle: (currentIndex) => {
             console.log(currentIndex);
-            this.deleteMusic(currentIndex.id);
+            this.deleteMusic(currentIndex.cdId);
           }
         },
         {

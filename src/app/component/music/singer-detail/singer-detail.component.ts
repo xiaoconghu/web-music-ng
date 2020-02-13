@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {MusicService} from '../../../core/api-service/music.service';
 import {Result} from '../../../core/entity/result';
 import {FormItem, FormOperate} from '../../../shared/nw-form';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -15,9 +14,9 @@ export class SingerDetailComponent implements OnInit {
 
   column: FormItem[] = [];
   formOperate: FormOperate;
-  private songFile: any;
   type;
   id;
+  private songFile: any;
 
   constructor(private singerService: SingerService,
               private $router: Router,
@@ -41,7 +40,12 @@ export class SingerDetailComponent implements OnInit {
       {label: '雅称', key: 'singerNickName', rule: [], require: true, type: 'input'},
       {label: '创建时间', key: 'createTime', rule: [], require: true, type: 'input'},
       {label: '头像', key: 'singerPic', rule: [], require: true, type: 'input'},
-      {label: '性别', key: 'singerGender', rule: [], require: true, type: 'input'},
+      {
+        label: '性别', key: 'singerGender', rule: [], require: true, type: 'select',
+        selectInfo: {
+          data: [{label: '男', value: 1}, {label: '女', value: 2}],
+        }
+      },
       {label: '描述', key: 'description', rule: [], require: true, type: 'input'},
     ];
 

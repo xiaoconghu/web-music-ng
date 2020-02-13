@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormItem, FormOperate} from '../../../shared/nw-form';
-import {SingerService} from '../../../core/api-service/singer.service';
 import {Result} from '../../../core/entity/result';
-import { Router, ActivatedRoute } from '@angular/router';
-import { NzMessageService } from 'ng-zorro-antd';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NzMessageService} from 'ng-zorro-antd';
 import {CdInfoService} from '../../../core/api-service/cd-info.service';
+import {SingerService} from '../../../core/api-service/singer.service';
 
 @Component({
   selector: 'nw-cd-detail',
@@ -15,11 +15,12 @@ export class CdDetailComponent implements OnInit {
 
   column: FormItem[] = [];
   formOperate: FormOperate;
-  private songFile: any;
   type;
   id;
+  private songFile: any;
 
   constructor(private cdInfoService: CdInfoService,
+              private singerService: SingerService,
               private $router: Router,
               private activeRoute: ActivatedRoute,
               private message: NzMessageService) {
@@ -36,13 +37,10 @@ export class CdDetailComponent implements OnInit {
         });
       });
     }
-    this.column = [
-      {label: '歌单名称', key: 'cdName', rule: [{required: true}, {minLength: 3}], require: true, type: 'input'},
-      {label: '歌单图片', key: 'singerPic', rule: [], require: true, type: 'input'},
-      {label: '上传时间', key: 'createTime', rule: [], require: true, type: 'input'},
-      {label: '描述', key: 'description', rule: [], require: true, type: 'input'},
-    ];
-
+    this.initColumn([]);
+    this.getSingerList().then((result: Result) => {
+      this.initColumn(result.data);
+    });
   }
 
   formInstance(e) {
@@ -75,8 +73,30 @@ export class CdDetailComponent implements OnInit {
 
   }
 
+  public getSingerList() {
+    return this.singerService.getMusicList();
+  }
+
   goBack() {
     history.go(-1);
+  }
+
+  private initColumn(data) {
+    this.column = [
+      {label: '歌单名称', key: 'cdName', rule: [{required: true}, {minLength: 3}], require: true, type: 'input'},
+      {label: '歌单图片', key: 'cdPic', rule: [], require: true, type: 'input'},
+      {
+        label: '所属歌手', key: 'singerId', rule: [], require: true, type: 'select',
+        selectInfo: {
+          data: data,
+          label: 'singerName',
+          value: 'id'
+        }
+      },
+      {label: '上传时间', key: 'createTime', rule: [], require: true, type: 'input'},
+      {label: '描述', key: 'description', rule: [], require: true, type: 'input'},
+    ];
+
   }
 
 }

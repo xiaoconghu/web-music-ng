@@ -7,6 +7,7 @@ import {NzMessageService} from 'ng-zorro-antd';
 import {MusicMissionService} from '../../../core/mission/music-mission.service';
 import {Singer} from '../../../core/entity/singer';
 import {SingerService} from '../../../core/api-service/singer.service';
+import {gender} from '../../../core/entity/const';
 
 @Component({
   selector: 'nw-singer-list',
@@ -78,6 +79,9 @@ export class SingerListComponent implements OnInit {
   public getMusicList() {
     this.singerService.getMusicList().then((re: Result) => {
       this.dataSet = re.data;
+      this.dataSet.forEach(item => {
+        item.singerGender = gender[item.singerGender];
+      });
     }, err => {
       this.message.error(err.msg);
     });
@@ -97,9 +101,11 @@ export class SingerListComponent implements OnInit {
       this.getMusicList();
     });
   }
+
   pageChange(event) {
 
   }
+
   private playMusic(currentMusic) {
     this.mission.commitMusic(currentMusic);
   }

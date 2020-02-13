@@ -14,8 +14,8 @@
                                    formControlName="{{col.key}}">
                             <nz-option
                                 *ngFor="let select of col.selectInfo.data"
-                                [nzLabel]="select[col.selectInfo.label]"
-                                [nzValue]="select[col.selectInfo.value]">
+                                [nzLabel]="select[col.selectInfo.label||'label']"
+                                [nzValue]="select[col.selectInfo.value||'value']">
                             </nz-option>
                         </nz-select>
                         <nz-radio-group *ngSwitchCase="'radio'" style="z-index: 2;line-height: 33px"
