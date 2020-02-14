@@ -37,7 +37,6 @@ export class CdDetailComponent implements OnInit {
         });
       });
     }
-    this.initColumn([]);
     this.getSingerList().then((result: Result) => {
       this.initColumn(result.data);
     });

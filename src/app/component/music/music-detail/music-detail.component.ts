@@ -4,6 +4,7 @@ import {MusicService} from '../../../core/api-service/music.service';
 import {Result} from '../../../core/entity/result';
 import {NzMessageService} from 'ng-zorro-antd';
 import {ActivatedRoute, Router} from '@angular/router';
+import {CdInfoService} from '../../../core/api-service/cd-info.service';
 
 @Component({
   selector: 'app-music-detail',
@@ -13,11 +14,12 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class MusicDetailComponent implements OnInit {
   column: FormItem[] = [];
   formOperate: FormOperate;
-  private songFile: any;
   type;
   id;
+  private songFile: any;
 
   constructor(private musicService: MusicService,
+              private cdInfoService: CdInfoService,
               private $router: Router,
               private activeRoute: ActivatedRoute,
               private message: NzMessageService) {
@@ -34,14 +36,9 @@ export class MusicDetailComponent implements OnInit {
         });
       });
     }
-    this.column = [
-      {label: '歌曲名', key: 'songName', rule: [{required: true}, {minLength: 3}], require: true, type: 'input'},
-      {label: '歌手', key: 'singer', rule: [], require: true, type: 'input'},
-      {label: '创建时间', key: 'createTime', rule: [], require: true, type: 'input'},
-      {label: '歌曲图片', key: 'songPic', rule: [], require: true, type: 'input'},
-      {label: '歌曲类型', key: 'songType', rule: [], require: true, type: 'input'},
-      {label: '描述', key: 'description', rule: [], require: true, type: 'input'},
-    ];
+    this.cdInfoService.getMusicList().then((result: Result) => {
+      this.initColumn(result.data);
+    });
 
   }
 
@@ -75,6 +72,23 @@ export class MusicDetailComponent implements OnInit {
     }
 
 
+  }
+
+  initColumn(cdData) {
+    this.column = [
+      {label: '歌曲名', key: 'songName', rule: [{required: true}, {minLength: 3}], require: true, type: 'input'},
+      {
+        label: '所属歌单', key: 'cdId', rule: [], require: true, type: 'select', selectInfo: {
+          data: cdData,
+          label: 'cdName',
+          value: 'cdId'
+        }
+      },
+      {label: '创建时间', key: 'createTime', rule: [], require: true, type: 'input'},
+      {label: '歌曲图片', key: 'songPic', rule: [], require: true, type: 'input'},
+      {label: '歌曲类型', key: 'songType', rule: [], require: true, type: 'input'},
+      {label: '描述', key: 'description', rule: [], require: true, type: 'input'},
+    ];
   }
 
   goBack() {

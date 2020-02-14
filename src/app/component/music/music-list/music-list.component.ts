@@ -31,7 +31,8 @@ export class MusicListComponent implements OnInit {
       showPagination: false,
       columnConfig: [
         {title: '歌曲名', key: 'songName'},
-        {title: '歌手', key: 'singer'},
+        {title: '歌单', key: 'cdName'},
+        {title: '歌手', key: 'singerName'},
         {title: '上传时间', key: 'createTime'},
         {title: '图片', key: 'songPic'},
         {title: '歌曲类型', key: 'songType'},
