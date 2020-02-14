@@ -37,7 +37,7 @@ export class MusicListComponent implements OnInit {
         {title: '图片', key: 'songPic'},
         {title: '歌曲类型', key: 'songType'},
         {title: '描述', key: 'description'},
-        {title: '操作', key: '', width: '200px'},
+        {title: '操作', key: ''},
       ],
       operation: [
         {

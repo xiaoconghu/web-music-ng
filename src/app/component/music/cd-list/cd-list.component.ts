@@ -65,7 +65,7 @@ export class CdListComponent implements OnInit {
         {
           text: '批量删除',
           handle: (currentIndex) => {
-            const ids = currentIndex.map(item => item.id);
+            const ids = currentIndex.map(item => item.cdId);
             console.log(ids);
             this.deleteByBatch(ids);
           }
