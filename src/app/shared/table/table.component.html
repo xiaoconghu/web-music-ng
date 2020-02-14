@@ -11,6 +11,7 @@
           [(nzPageIndex)]="pageBean.pageIndex"
           [(nzPageSize)]="pageBean.pageSize"
           [nzFrontPagination]="false"
+          [nzScroll]="tableConfig.scroll"
           (nzPageIndexChange)="refreshStatus($event)"
           (nzPageSizeChange)="refreshStatus($event)"
           [nzPageSizeOptions]="[ 10, 20, 30, 40, 50 ]"
@@ -21,20 +22,20 @@
           #middleTable>
   <thead>
   <tr>
-    <th nzShowCheckbox nzShowRowSelection [nzSelections]="listOfSelection" [(nzChecked)]="allChecked"
+    <th  nzLeft="0px" nzShowCheckbox nzShowRowSelection [nzSelections]="listOfSelection" [(nzChecked)]="allChecked"
         [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
-    <th *ngFor="let config of tableConfig.columnConfig" nzWidth="{{config.width}}">
-      {{config.title}}
+    <th *ngFor="let config of tableConfig.columnConfig" nzWidth="{{config.width+'px'}}">
+      <span class="text-overflow-hidden">{{config.title}}</span>
     </th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let data of nzTable.data">
-    <td nzShowCheckbox [(nzChecked)]="data.checked" (nzCheckedChange)="refreshCheckStatus()"></td>
+    <td nzLeft="0px" nzShowCheckbox [(nzChecked)]="data.checked" (nzCheckedChange)="refreshCheckStatus()"></td>
 
     <td *ngFor="let config of tableConfig.columnConfig">
       <ng-container *ngIf="config.key">
-        {{data[config.key]}}
+        <span class="text-overflow-hidden text-span" [title]="data[config.key]" >{{data[config.key]}}</span>
       </ng-container>
       <ng-container *ngIf="!config.key">
         <span *ngFor="let item of tableConfig.operation let index = index" style="color: #1890ff; cursor: pointer"

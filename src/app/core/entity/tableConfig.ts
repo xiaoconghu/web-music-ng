@@ -1,10 +1,10 @@
 /**
  * Created by wh1709040 on 2018/9/17.
  */
-class ColumnConfig {
+export class ColumnConfig {
   public title: string;
   public key: string;
-  public width?: string;
+  public width?: number;
 }
 
 export class TableConfig {
@@ -14,9 +14,17 @@ export class TableConfig {
   public columnConfig: ColumnConfig[];
   public operation?: Operation[];
   public topButtons?: Operation[];
+  public scroll?: any;
+  public outHeight?: number;
+  public noAutoHeight?: boolean;
 }
 
 export class Operation {
   public text: string;
   public handle: any;
+}
+
+export enum TableStylePixel {
+  PIXEL = 'px',
+  TH_TAG_NAME = 'TH'
 }

@@ -36,7 +36,7 @@ export class CdListComponent implements OnInit {
         {title: '上传时间', key: 'createTime'},
         {title: '歌单图片', key: 'singerPic'},
         {title: '描述', key: 'description'},
-        {title: '操作', key: '', width: '200px'},
+        {title: '操作', key: ''},
       ],
       operation: [
         {

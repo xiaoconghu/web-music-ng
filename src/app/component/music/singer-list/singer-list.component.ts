@@ -33,11 +33,11 @@ export class SingerListComponent implements OnInit {
       columnConfig: [
         {title: '名称', key: 'singerName'},
         {title: '雅称', key: 'singerNickName'},
-        {title: '上传时间', key: 'createTime'},
+        {title: '上传时间', key: 'createTime', width: 150},
         {title: '头像', key: 'singerPic'},
         {title: '性别', key: 'singerGender'},
         {title: '描述', key: 'description'},
-        {title: '操作', key: '', width: '200px'},
+        {title: '操作', key: ''},
       ],
       operation: [
         {

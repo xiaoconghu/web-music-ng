@@ -1,7 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
-.ant-table-tbody>tr>td, .ant-table-thead>tr>th{
+.ant-table-tbody > tr > td, .ant-table-thead > tr > th {
   padding: 6px;
 }
-.ant-table-pagination.ant-pagination{
+
+.ant-table-pagination.ant-pagination {
   margin: 7px 0;
+}
+
+.text-overflow-hidden {
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+  word-break: keep-all;
+}
+
+.ant-table-fixed {
+  table-layout: fixed;
+}
+
+table {
+  table-layout: fixed;
+}
+.ant-table-tbody > tr > td, .ant-table-thead > tr > th {
+  padding: 10px;
+  line-height: 14px;
 }
