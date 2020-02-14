@@ -52,7 +52,9 @@ export class CdDetailComponent implements OnInit {
   }
 
   save() {
-    console.log(this.type);
+    if (!this.formOperate.updateValueAndValidity()) {
+      return;
+    }
     if (this.type === 'update') {
       const body = this.formOperate.getData();
       body.id = this.id;
@@ -83,17 +85,17 @@ export class CdDetailComponent implements OnInit {
   private initColumn(data) {
     this.column = [
       {label: '歌单名称', key: 'cdName', rule: [{required: true}, {minLength: 3}], require: true, type: 'input'},
-      {label: '歌单图片', key: 'cdPic', rule: [], require: true, type: 'input'},
+      {label: '歌单图片', key: 'cdPic', rule: [], type: 'input'},
       {
-        label: '所属歌手', key: 'singerId', rule: [], require: true, type: 'select',
+        label: '所属歌手', key: 'singerId', rule: [], allowClear: true, type: 'select',
         selectInfo: {
           data: data,
           label: 'singerName',
           value: 'id'
         }
       },
-      {label: '上传时间', key: 'createTime', rule: [], require: true, type: 'input'},
-      {label: '描述', key: 'description', rule: [], require: true, type: 'input'},
+      {label: '上传时间', key: 'createTime', rule: [],  type: 'input'},
+      {label: '描述', key: 'description', rule: [],  type: 'textarea'},
     ];
 
   }

@@ -52,6 +52,9 @@ export class MusicDetailComponent implements OnInit {
   }
 
   save() {
+    if (!this.formOperate.updateValueAndValidity()) {
+      return;
+    }
     if (this.type === 'update') {
       const body = this.formOperate.getData();
       body.id = this.id;
@@ -78,7 +81,7 @@ export class MusicDetailComponent implements OnInit {
     this.column = [
       {label: '歌曲名', key: 'songName', rule: [{required: true}, {minLength: 3}], require: true, type: 'input'},
       {
-        label: '所属歌单', key: 'cdId', rule: [], require: true, type: 'select', selectInfo: {
+        label: '所属歌单', key: 'cdId', rule: [],  allowClear: true, type: 'select', selectInfo: {
           data: cdData,
           label: 'cdName',
           value: 'cdId'
@@ -87,7 +90,7 @@ export class MusicDetailComponent implements OnInit {
       {label: '创建时间', key: 'createTime', rule: [], require: true, type: 'input'},
       {label: '歌曲图片', key: 'songPic', rule: [], require: true, type: 'input'},
       {label: '歌曲类型', key: 'songType', rule: [], require: true, type: 'input'},
-      {label: '描述', key: 'description', rule: [], require: true, type: 'input'},
+      {label: '描述', key: 'description', rule: [], type: 'textarea'},
     ];
   }
 

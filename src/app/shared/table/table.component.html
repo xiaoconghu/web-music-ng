@@ -6,6 +6,7 @@
 </div>
 <nz-table #nzTable
           [nzData]="dataSet"
+          [nzLoading]="tableConfig.isLoading"
           [nzTotal]="pageBean.Total"
           [(nzPageIndex)]="pageBean.pageIndex"
           [(nzPageSize)]="pageBean.pageSize"

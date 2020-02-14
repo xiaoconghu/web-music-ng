@@ -76,9 +76,12 @@ export class CdListComponent implements OnInit {
   }
 
   public getMusicList() {
+    this.tableConfig.isLoading = true;
     this.cdInfoService.getMusicList().then((re: Result) => {
+      this.tableConfig.isLoading = false;
       this.dataSet = re.data;
     }, err => {
+      this.tableConfig.isLoading = false;
       this.message.error(err.msg);
     });
   }

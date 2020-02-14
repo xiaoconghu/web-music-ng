@@ -85,10 +85,14 @@ export class MusicListComponent implements OnInit {
   }
 
   public getMusicList() {
+    this.tableConfig.isLoading = true;
     this.musicService.getMusicList().then((re: Result) => {
+      this.tableConfig.isLoading = false;
       this.dataSet = re.data;
+
     }, err => {
       this.message.error(err.msg);
+      this.tableConfig.isLoading = false;
     });
   }
 

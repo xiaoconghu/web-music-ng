@@ -13,6 +13,7 @@ export class FormItem {
   col?: number; // 在一行的占比 一行为24份 不填默认12
   require?: boolean; // 是否有必填星号
   initialValue?: any; // 初始值
+  allowClear?: boolean;
   rule: any[];    // 同步校验规则
   asyncRules?: any[]; // 异步校验规则
   selectInfo?: any;  // 选择框（包括单选 多选 下拉选择 ）选项数据
@@ -145,7 +146,7 @@ export class FormOperate implements FormOperateInterface {
     if (index === -1) {
       const validator = this.addRule(formItem.rule);
       const asyncValidator = this.addAsyncRule(formItem.asyncRules);
-      const formControl = new FormControl(formItem.initialValue || '', validator, asyncValidator);
+      const formControl = new FormControl(formItem.initialValue || null, validator, asyncValidator);
       this.group.addControl(formItem.key, formControl);
       if (_index && _index !== 0) {
         this.column.splice(_index, 0, formItem);
@@ -272,6 +273,14 @@ export class FormOperate implements FormOperateInterface {
     } else {
       return this.group.valid;
     }
+  }
+
+  updateValueAndValidity() {
+    Object.keys(this.group.controls).forEach(item => {
+      this.group.controls[item].markAsDirty();
+      this.group.controls[item].updateValueAndValidity();
+    });
+    return this.group.valid;
   }
 }
 

@@ -36,17 +36,17 @@ export class SingerDetailComponent implements OnInit {
       });
     }
     this.column = [
-      {label: '名称', key: 'singerName', rule: [{required: true}, {minLength: 3}], require: true, type: 'input'},
-      {label: '雅称', key: 'singerNickName', rule: [], require: true, type: 'input'},
-      {label: '创建时间', key: 'createTime', rule: [], require: true, type: 'input'},
-      {label: '头像', key: 'singerPic', rule: [], require: true, type: 'input'},
+      {label: '名称', key: 'singerName', rule: [{required: true}, {maxLength: 8}, {minLength: 3}], require: true, type: 'input'},
+      {label: '雅称', key: 'singerNickName', rule: [{required: true}, {maxLength: 8}, {minLength: 3}], require: true, type: 'input'},
+      {label: '创建时间', key: 'createTime', rule: [], type: 'input'},
+      {label: '头像', key: 'singerPic', rule: [], type: 'input'},
       {
-        label: '性别', key: 'singerGender', rule: [], require: true, type: 'select',
+        label: '性别', key: 'singerGender', rule: [{required: true}], require: true, type: 'select',
         selectInfo: {
           data: [{label: '男', value: 1}, {label: '女', value: 2}],
         }
       },
-      {label: '描述', key: 'description', rule: [], require: true, type: 'input'},
+      {label: '描述', key: 'description', rule: [], type: 'textarea'},
     ];
 
   }
@@ -61,7 +61,9 @@ export class SingerDetailComponent implements OnInit {
   }
 
   save() {
-    console.log(this.type);
+    if (!this.formOperate.updateValueAndValidity()) {
+      return;
+    }
     if (this.type === 'update') {
       const body = this.formOperate.getData();
       body.id = this.id;

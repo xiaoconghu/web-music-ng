@@ -10,6 +10,7 @@ class ColumnConfig {
 export class TableConfig {
   public bordered: boolean;
   public showPagination: boolean;
+  public isLoading?: boolean;
   public columnConfig: ColumnConfig[];
   public operation?: Operation[];
   public topButtons?: Operation[];

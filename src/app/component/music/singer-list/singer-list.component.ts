@@ -77,12 +77,15 @@ export class SingerListComponent implements OnInit {
   }
 
   public getMusicList() {
+    this.tableConfig.isLoading = true;
     this.singerService.getMusicList().then((re: Result) => {
+      this.tableConfig.isLoading = false;
       this.dataSet = re.data;
       this.dataSet.forEach(item => {
         item.singerGender = gender[item.singerGender];
       });
     }, err => {
+      this.tableConfig.isLoading = false;
       this.message.error(err.msg);
     });
   }

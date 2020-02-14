@@ -51,7 +51,7 @@ export class NwFormComponent implements OnInit, OnChanges {
   initForm() {
     this.formOperate = new FormOperate(this.formGroup, this.column);
     this.column.forEach((item: FormItem) => {
-      const value = item.initialValue || '';
+      const value = item.initialValue || null;
       const formControl = new FormControl(value, this.formOperate.addRule(item.rule),
         this.formOperate.addAsyncRule(item.asyncRules));
       this.formGroup.addControl(item.key, formControl);
