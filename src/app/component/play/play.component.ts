@@ -114,4 +114,13 @@ export class PlayComponent implements OnInit, AfterViewInit {
       this.isPlay = true;
     });
   }
+
+  toggleLoop() {
+    this.isLoop = !this.isLoop;
+    if (this.isLoop) {
+      this.message.info('开启循环播放');
+    } else {
+      this.message.info('关闭循环播放');
+    }
+  }
 }

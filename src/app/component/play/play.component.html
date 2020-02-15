@@ -4,8 +4,8 @@
       background-color: #32ab7a;display: flex">
     <div style="    padding: 0 20px;">
       <i class="controls" nz-icon type="sync" [hidden]="!isLoop"
-         (click)="isLoop =!isLoop" theme="outline"></i>
-      <i class="controls" nz-icon type="reload" (click)="isLoop =!isLoop" [hidden]="isLoop" theme="outline"></i>
+         (click)="toggleLoop()" theme="outline"></i>
+      <i class="controls" nz-icon type="reload" (click)="toggleLoop()" [hidden]="isLoop" theme="outline"></i>
       <i class="controls" nz-icon type="left-circle" (click)="prev()"  theme="outline"></i>
       <i class="controls" nz-icon type="play-circle" [hidden]="isPlay" (click)="clickPlay()" theme="outline"></i>
       <i class="controls" nz-icon type="pause-circle" [hidden]="!isPlay" (click)="clickPlay()" theme="outline"></i>
