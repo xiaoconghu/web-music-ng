@@ -88,8 +88,8 @@ export class MusicListComponent implements OnInit {
     this.tableConfig.isLoading = true;
     this.musicService.getMusicList().then((re: Result) => {
       this.tableConfig.isLoading = false;
+      this.mission.commitMusicList(re.data);
       this.dataSet = re.data;
-
     }, err => {
       this.message.error(err.msg);
       this.tableConfig.isLoading = false;

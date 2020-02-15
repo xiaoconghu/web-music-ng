@@ -3,16 +3,18 @@
   <div style="height: 55px;
       background-color: #32ab7a;display: flex">
     <div style="    padding: 0 20px;">
-      <i class="controls" nz-icon type="retweet" theme="outline"></i>
-      <i class="controls" nz-icon type="left-circle" theme="outline"></i>
+      <i class="controls" nz-icon type="sync" [hidden]="!isLoop"
+         (click)="isLoop =!isLoop" theme="outline"></i>
+      <i class="controls" nz-icon type="reload" (click)="isLoop =!isLoop" [hidden]="isLoop" theme="outline"></i>
+      <i class="controls" nz-icon type="left-circle" (click)="prev()"  theme="outline"></i>
       <i class="controls" nz-icon type="play-circle" [hidden]="isPlay" (click)="clickPlay()" theme="outline"></i>
       <i class="controls" nz-icon type="pause-circle" [hidden]="!isPlay" (click)="clickPlay()" theme="outline"></i>
-      <i class="controls" nz-icon type="right-circle" theme="outline"></i>
+      <i class="controls" nz-icon type="right-circle" (click)="next()"  theme="outline"></i>
       <i class="controls" nz-icon type="download" theme="outline"></i>
     </div>
     <div style="flex: 1;
     padding: 0 32px;
-    line-height: 44px;display: flex">
+    line-height: 55px;display: flex">
       <span>{{currentTime*1000|timePipe}}</span>
       <!--<nz-progress style="flex: 1;margin: 0 20px" [nzPercent]="(currentTime/playTime)*100"-->
       <!--[nzShowInfo]="false"></nz-progress>-->
@@ -25,8 +27,10 @@
                          [disabled]="false"
                          (dragEvent)="rangeChange($event)"
                          (dragEndEvent)="rangeChangeEnd($event)"
+                         (dragStartEvent) = "rangeChangeStart($event)"
       ></app-play-progress>
       <span>{{playTime*1000|timePipe}}</span>
+      <i class="full-icon"  nz-icon type="fullscreen" theme="outline"></i>
     </div>
     <audio style="text-align: center;margin: 0 auto"
            id="play"

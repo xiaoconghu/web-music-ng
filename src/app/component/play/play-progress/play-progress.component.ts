@@ -24,6 +24,8 @@ export class PlayProgressComponent implements OnInit {
   dragEvent = new EventEmitter();
   @Output()
   dragEndEvent = new EventEmitter();
+  @Output()
+  dragStartEvent = new EventEmitter();
 
   constructor() {
   }
@@ -47,11 +49,12 @@ export class PlayProgressComponent implements OnInit {
           return;
         }
         const position = getThumbPosition();
-        const thumbClickDetalX = event.clientX - position.thumbBoxLeft;
+        const thumbClickDetailX = event.clientX - position.thumbBoxLeft;
+        this.dragStartEvent.emit();
         dragState = {
           thumbStartLeft: position.left,
           thumbStartTop: position.top,
-          thumbClickDetalX: thumbClickDetalX
+          thumbClickDetailX: thumbClickDetailX
         };
       },
       drag: (event) => {
@@ -59,7 +62,7 @@ export class PlayProgressComponent implements OnInit {
           return;
         }
         const contentBox = content.getBoundingClientRect();
-        const deltaX = event.pageX - contentBox.left - dragState.thumbStartLeft - dragState.thumbClickDetalX;
+        const deltaX = event.pageX - contentBox.left - dragState.thumbStartLeft - dragState.thumbClickDetailX;
         const stepCount = Math.ceil((this.max - this.min) / this.step);
         const __newPosition = (dragState.thumbStartLeft + deltaX) - (dragState.thumbStartLeft + deltaX) % (contentBox.width / stepCount);
         let newProgress = __newPosition / contentBox.width;
