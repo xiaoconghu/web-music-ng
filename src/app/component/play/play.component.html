@@ -27,7 +27,7 @@
                          [disabled]="false"
                          (dragEvent)="rangeChange($event)"
                          (dragEndEvent)="rangeChangeEnd($event)"
-                         (dragStartEvent) = "rangeChangeStart($event)"
+                         (dragStartEvent) = "rangeChangeStart()"
       ></app-play-progress>
       <span>{{playTime*1000|timePipe}}</span>
       <i class="full-icon"  nz-icon type="fullscreen" theme="outline"></i>

@@ -87,9 +87,9 @@ export class MusicDetailComponent implements OnInit {
           value: 'cdId'
         }
       },
-      {label: '创建时间', key: 'createTime', rule: [], require: true, type: 'input'},
-      {label: '歌曲图片', key: 'songPic', rule: [], require: true, type: 'input'},
-      {label: '歌曲类型', key: 'songType', rule: [], require: true, type: 'input'},
+      {label: '创建时间', key: 'createTime', rule: [],  type: 'input'},
+      {label: '歌曲图片', key: 'songPic', rule: [],  type: 'input'},
+      {label: '歌曲类型', key: 'songType', rule: [],  type: 'input'},
       {label: '描述', key: 'description', rule: [], type: 'textarea'},
     ];
   }
