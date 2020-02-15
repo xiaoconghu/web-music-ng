@@ -22,11 +22,11 @@ export class UserListComponent implements OnInit {
   ngOnInit() {
     this.tableConfig = {
       columnConfig: [
-        {title: '用户昵称', key: 'userName'},
-        {title: '用户代码', key: 'userCode'},
+        {title: '昵称', key: 'userName'},
+        {title: '账号', key: 'userCode'},
         {title: '手机号', key: 'phoneNumber'},
-        {title: '用户邮箱', key: 'email'},
-        {title: '创建时间', key: 'createTime'},
+        {title: '用户邮箱', key: 'email', width: 150},
+        {title: '创建时间', key: 'createTime', width: 150},
         {title: '操作', key: ''},
       ],
       showPagination: true,
