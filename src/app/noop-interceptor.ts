@@ -27,6 +27,7 @@ export class NoopInterceptor implements HttpInterceptor {
     switch (event.status) {
       case 401:
         console.log('你尚未登录');
+        this.$router.navigate(['/index/login']);
         break;
       case 404:
         console.log('地址错误');

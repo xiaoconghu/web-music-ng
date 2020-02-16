@@ -2,7 +2,7 @@
 <label for="songFile">
   上传音乐
 </label>
-<input name="file" type="file" id="songFile" (change)="change($event)"/>
+<input name="file" type="file" id="songFile" accept="audio/mpeg,audio/3gpp" (change)="change($event)"/>
 <div>
   <button nz-button nzType="primary" (click)="save()" style="margin: 20px 20px 20px 160px">保存</button>
   <button nz-button nzType="default" (click)="goBack()">返回</button>

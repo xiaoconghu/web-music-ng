@@ -1,7 +1,22 @@
 <nz-header class="header">
   <div class="logo"><img width="50" src="./../../../assets/iotWls.svg" alt=""/>web音乐管理系统</div>
   <div class="alarm">
-    <button nz-button (click)="logout()">登出</button>
+    <nz-dropdown [nzTrigger]="'click'" [nzPlacement]="'bottomCenter'">
+      <a nz-dropdown style="display: inline-block;height: 50px">
+        <nz-avatar nzIcon="anticon anticon-user"
+                   style="color:#f56a00; background-color:#fde3cf;"
+                   nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+      </a>
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item>{{userInfo.userName}}</li>
+        <li nz-menu-item>
+          <a>个人中心</a>
+        </li>
+        <li nz-menu-item (click)="logout()">
+          <a>退出登录</a>
+        </li>
+      </ul>
+    </nz-dropdown>
   </div>
 </nz-header>
 <nz-layout class="layout">

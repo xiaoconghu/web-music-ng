@@ -48,7 +48,7 @@ export class MusicDetailComponent implements OnInit {
 
   change(e) {
     this.songFile = e.target.files[0];
-    console.log(e);
+    this.formOperate.resetControlData('songName', this.songFile.name.split('.')[0]);
   }
 
   save() {
@@ -81,15 +81,15 @@ export class MusicDetailComponent implements OnInit {
     this.column = [
       {label: '歌曲名', key: 'songName', rule: [{required: true}, {minLength: 3}], require: true, type: 'input'},
       {
-        label: '所属歌单', key: 'cdId', rule: [],  allowClear: true, type: 'select', selectInfo: {
+        label: '所属歌单', key: 'cdId', rule: [], allowClear: true, type: 'select', selectInfo: {
           data: cdData,
           label: 'cdName',
           value: 'cdId'
         }
       },
-      {label: '创建时间', key: 'createTime', rule: [],  type: 'input'},
-      {label: '歌曲图片', key: 'songPic', rule: [],  type: 'input'},
-      {label: '歌曲类型', key: 'songType', rule: [],  type: 'input'},
+      {label: '创建时间', key: 'createTime', rule: [], type: 'input'},
+      {label: '歌曲图片', key: 'songPic', rule: [], type: 'input'},
+      {label: '歌曲类型', key: 'songType', rule: [], type: 'input'},
       {label: '描述', key: 'description', rule: [], type: 'textarea'},
     ];
   }
