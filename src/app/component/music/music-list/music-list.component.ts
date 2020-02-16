@@ -98,8 +98,12 @@ export class MusicListComponent implements OnInit {
 
   deleteMusic(id) {
     this.musicService.deleteMusicById(id).then((result: Result) => {
-      this.message.success(result.msg);
-      this.getMusicList();
+      if (result.code === 0) {
+        this.message.success(result.msg);
+        this.getMusicList();
+      } else {
+        this.message.error(result.msg);
+      }
     }, err => {
       this.message.error(err.msg);
     });
@@ -107,7 +111,14 @@ export class MusicListComponent implements OnInit {
 
   deleteByBatch(ids) {
     this.musicService.deleteByBatch(ids).then((result: Result) => {
-      this.getMusicList();
+      if (result.code === 0) {
+        this.message.success(result.msg);
+        this.getMusicList();
+      } else {
+        this.message.error(result.msg);
+      }
+    }, (error) => {
+      this.message.error(error.msg);
     });
   }
 
