@@ -26,7 +26,7 @@ export class PlayComponent implements OnInit, AfterViewInit {
     this.audio = document.getElementById('play');
     this.mission.musicChange.subscribe((currentMusic: Music) => {
       this.song = currentMusic;
-      this.playUrl = `/music/song/media/${currentMusic.id}`;
+      this.playUrl = this.song.songUrl;
       this.playBoxShow = true;
       this.playCurrentMusic();
 
@@ -104,7 +104,8 @@ export class PlayComponent implements OnInit, AfterViewInit {
   getUrlAndPlay() {
     this.audio.pause();
     this.song = this.mission._musicList[this.mission.currentMusicIndex];
-    this.playUrl = `/music/song/media/${this.song.id}`;
+    // this.playUrl = `/music/song/media/${this.song.id}`;
+    this.playUrl = this.song.songUrl;
     this.playCurrentMusic();
   }
 
