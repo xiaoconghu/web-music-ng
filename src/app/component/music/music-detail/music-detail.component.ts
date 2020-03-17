@@ -17,6 +17,7 @@ export class MusicDetailComponent implements OnInit {
   type;
   id;
   private songFile: any;
+  isLoading;
 
   constructor(private musicService: MusicService,
               private cdInfoService: CdInfoService,
@@ -55,10 +56,12 @@ export class MusicDetailComponent implements OnInit {
     if (!this.formOperate.updateValueAndValidity()) {
       return;
     }
+    this.isLoading = true;
     if (this.type === 'update') {
       const body = this.formOperate.getData();
       body.id = this.id;
       this.musicService.update(body).then((res: Result) => {
+        this.isLoading = false;
         this.$router.navigate(['/user/music/music-list']);
       });
     } else {
@@ -67,6 +70,7 @@ export class MusicDetailComponent implements OnInit {
       body.append('file', this.songFile);
       body.append('song', JSON.stringify(_bod));
       this.musicService.save(body).then((re: Result) => {
+        this.isLoading = false;
         this.$router.navigate(['/user/music/music-list']);
         this.message.success(re.msg);
       }, err => {
