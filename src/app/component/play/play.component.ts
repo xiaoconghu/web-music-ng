@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MusicMissionService} from '../../core/mission/music-mission.service';
 import {Music} from '../../core/entity/music';
-import {NzMessageService} from 'ng-zorro-antd';
+import {NzMessageService, NzNotificationService} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-play',
@@ -19,6 +19,7 @@ export class PlayComponent implements OnInit, AfterViewInit {
   isLoop = true;
 
   constructor(private mission: MusicMissionService,
+              private notification: NzNotificationService,
               private message: NzMessageService) {
   }
 
@@ -110,10 +111,15 @@ export class PlayComponent implements OnInit, AfterViewInit {
   }
 
   playCurrentMusic() {
+    this.notification.create('info', '当前播放歌曲', this.song.songName);
     setTimeout(e => {
       this.audio.play();
       this.isPlay = true;
     });
+  }
+
+  currentPlay() {
+    this.notification.create('info', '当前播放歌曲', this.song.songName);
   }
 
   toggleLoop() {
