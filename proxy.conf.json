@@ -1,6 +1,6 @@
 {
     "/music": {
-        "target": "http://localhost:8888",
+        "target": "http://118.178.18.207:8888",
         "secure": false
     }
 }

@@ -1,30 +1,28 @@
-<nz-header class="header">
-  <div class="logo"><img width="50" src="./../../../assets/iotWls.svg" alt=""/>web音乐管理系统</div>
-  <div class="alarm">
-    <nz-dropdown [nzTrigger]="'click'" [nzPlacement]="'bottomCenter'">
-      <a nz-dropdown style="display: inline-block;height: 50px">
-        <nz-avatar nzIcon="anticon anticon-user"
-                   style="color:#f56a00; background-color:#fde3cf;"
-                   nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
-      </a>
-      <ul nz-menu nzSelectable>
-        <li nz-menu-item>{{userInfo.userName}}</li>
-        <li nz-menu-item>
-          <a>个人中心</a>
-        </li>
-        <li nz-menu-item (click)="logout()">
-          <a>退出登录</a>
-        </li>
-      </ul>
-    </nz-dropdown>
-  </div>
-</nz-header>
-<nz-layout class="layout">
-
+<div style="display: flex;flex-direction: column;height: 100%;overflow: hidden">
+  <nz-header class="header">
+    <div class="logo"><img width="50" src="./../../../assets/iotWls.svg" alt=""/>web音乐管理系统</div>
+    <div class="alarm">
+      <nz-dropdown [nzTrigger]="'click'" [nzPlacement]="'bottomCenter'">
+        <a nz-dropdown style="display: inline-block;height: 50px">
+          <nz-avatar nzIcon="anticon anticon-user"
+                     style="color:#f56a00; background-color:#fde3cf;"
+                     nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+        </a>
+        <ul nz-menu nzSelectable>
+          <li nz-menu-item>{{userInfo.userName}}</li>
+          <li nz-menu-item>
+            <a>个人中心</a>
+          </li>
+          <li nz-menu-item (click)="logout()">
+            <a>退出登录</a>
+          </li>
+        </ul>
+      </nz-dropdown>
+    </div>
+  </nz-header>
   <nz-layout>
-    <nz-sider [nzWidth]="200" style="background:#263238;">
-      <ul nz-menu [nzMode]="'inline'" style="background:#263238;width:201px;color: #939fa7;">
-
+    <nz-sider  style="background:#fff;border-right: 1px solid #e8e8e8;" [nzBreakpoint]="'lg'"  [(nzCollapsed)]="isCollapsed" [nzTrigger]="triggerTemplate">
+      <ul nz-menu [class.close]="!isCollapsed" [nzMode]="'inline'"  [nzInlineCollapsed]="isCollapsed">
         <li nz-menu-item nz-tooltip nzPlacement="right" (click)="navigate('user/music/singer-list')">
             <span title>
               <i nz-icon type="android" theme="outline"></i>
@@ -57,13 +55,23 @@
         </li>
       </ul>
     </nz-sider>
-    <nz-layout style="padding:0 24px;box-sizing: border-box;background: #f6fafb">
-      <nz-content style="background:#f6fafb; box-sizing: border-box;
-  height:calc(100vh - 133px);padding: 24px 24px 0 24px;overflow: auto ">
-        <router-outlet></router-outlet>
+    <nz-layout>
+      <nz-header style="background: #fff; padding:0;">
+        <i class="trigger" nz-icon [type]="isCollapsed?'menu-unfold':'menu-fold'" (click)="isCollapsed=!isCollapsed"></i>
+      </nz-header>
+      <nz-content style="margin:0 16px;">
+        <div style=" min-height: 360px;margin-top: 10px">
+          <router-outlet></router-outlet>
+        </div>
       </nz-content>
-      <nz-footer style="text-align: center;background: #f6fafb">app-music ©2017 Implement By xiaoconghu</nz-footer>
+      <nz-footer style="text-align: center;">app-music ©2017 Implement By xiaoconghu</nz-footer>
     </nz-layout>
   </nz-layout>
-</nz-layout>
+  <ng-template #triggerTemplate>
+    <i nz-icon type="up"></i>
+  </ng-template>
+</div>
+
+
+
 <app-play></app-play>

@@ -27,3 +27,7 @@ table {
   padding: 10px;
   line-height: 14px;
 }
+
+.close.ant-menu-inline, .close.ant-menu-vertical, .close.ant-menu-vertical-left {
+  border-right: none;
+}

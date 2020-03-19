@@ -13,6 +13,7 @@ import {Result} from '../../core/entity/result';
 })
 export class UserComponent implements OnInit {
   userInfo;
+  isCollapsed = false;
 
   constructor(private $router: Router,
               private $userService: UserService) {
