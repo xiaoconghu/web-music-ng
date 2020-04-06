@@ -1,14 +1,15 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, OnDestroy} from '@angular/core';
 import {MusicMissionService} from '../../core/mission/music-mission.service';
 import {Music} from '../../core/entity/music';
 import {NzMessageService, NzNotificationService} from 'ng-zorro-antd';
+import { Subscription } from '../../../../node_modules/rxjs';
 
 @Component({
   selector: 'app-play',
   templateUrl: './play.component.html',
   styleUrls: ['./play.component.less']
 })
-export class PlayComponent implements OnInit, AfterViewInit {
+export class PlayComponent implements OnInit, AfterViewInit,OnDestroy {
   song: Music = new Music();
   playUrl: string;
   playTime: any;
@@ -17,6 +18,7 @@ export class PlayComponent implements OnInit, AfterViewInit {
   public isPlay: boolean;
   audio: any;
   isLoop = true;
+  private musicSubscription: Subscription;
 
   constructor(private mission: MusicMissionService,
               private notification: NzNotificationService,
@@ -25,12 +27,11 @@ export class PlayComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.audio = document.getElementById('play');
-    this.mission.musicChange.subscribe((currentMusic: Music) => {
+    this.musicSubscription  = this.mission.musicChange.subscribe((currentMusic: Music) => {
       this.song = currentMusic;
       this.playUrl = this.song.songUrl;
       this.playBoxShow = true;
       this.playCurrentMusic();
-
     });
   }
 
@@ -117,7 +118,6 @@ export class PlayComponent implements OnInit, AfterViewInit {
       this.isPlay = true;
     });
   }
-
   currentPlay() {
     this.notification.create('info', '当前播放歌曲', this.song.songName);
   }
@@ -129,5 +129,12 @@ export class PlayComponent implements OnInit, AfterViewInit {
     } else {
       this.message.info('关闭循环播放');
     }
+  }
+
+  ngOnDestroy(): void {
+    this.audio.pause();
+    this.isPlay = false;
+    this.audio = null;
+    this.musicSubscription.unsubscribe();
   }
 }
